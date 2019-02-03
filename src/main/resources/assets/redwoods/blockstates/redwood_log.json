@@ -1,0 +1,8 @@
+{
+  "variants": {
+	"axis=x": { "model":  "redwoods:redwood_log", "x": 90, "y": 90 },
+	"axis=y": { "model":  "redwoods:redwood_log" },
+	"axis=z": { "model":  "redwoods:redwood_log", "x": 90 },
+	"axis=none": { "model":  "redwoods:redwood_bark" }
+  }
+}
