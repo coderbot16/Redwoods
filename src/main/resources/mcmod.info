@@ -1,0 +1,16 @@
+[
+{
+  "modid": "redwoods",
+  "name": "Redwoods",
+  "description": "Adds redwood and fir trees, with corresponding biomes.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["coderbot16"],
+  "credits": "Biomes and generation inspired by ExtrabiomesXL, Textures used from ExtrabiomesXL (CC BY-SA 3.0)",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
