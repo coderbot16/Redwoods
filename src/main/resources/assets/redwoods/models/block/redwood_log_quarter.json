@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+	"particle": "redwoods:blocks/log_redwood",
+	"up": "redwoods:blocks/log_redwood_top_quarter",
+	"down": "redwoods:blocks/log_redwood_bottom_quarter",
+	"south": "redwoods:blocks/log_redwood_bark_left",
+	"west": "redwoods:blocks/log_redwood_bark_right",
+	"north": "redwoods:blocks/log_redwood_bare_right",
+	"east": "redwoods:blocks/log_redwood_bare_left"
+  }
+}

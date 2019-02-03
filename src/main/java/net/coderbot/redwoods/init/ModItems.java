@@ -16,11 +16,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ModItems {
 	public static Item REDWOOD_LOG;
 	public static Item FIR_LOG;
+	public static Item REDWOOD_LOG_QUARTER;
+	public static Item FIR_LOG_QUARTER;
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 		REDWOOD_LOG = register(event, ModBlocks.REDWOOD_LOG);
 		FIR_LOG = register(event, ModBlocks.FIR_LOG);
+		REDWOOD_LOG_QUARTER = register(event, ModBlocks.REDWOOD_LOG_QUARTER);
+		FIR_LOG_QUARTER = register(event, ModBlocks.FIR_LOG_QUARTER);
 	}
 
 	@SubscribeEvent
@@ -28,6 +32,8 @@ public class ModItems {
 	public static void registerModels(ModelRegistryEvent event) {
 		registerModel(REDWOOD_LOG);
 		registerModel(FIR_LOG);
+		registerModel(REDWOOD_LOG_QUARTER);
+		registerModel(FIR_LOG_QUARTER);
 	}
 
 	private static Item register(RegistryEvent.Register<Item> event, Block block) {

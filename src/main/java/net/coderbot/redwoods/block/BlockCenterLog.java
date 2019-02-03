@@ -24,7 +24,7 @@ public class BlockCenterLog extends BlockLog {
 	public IBlockState getStateFromMeta(int meta) {
 		EnumAxis axis;
 
-		switch(meta & 3) {
+		switch(meta >> 2) {
 			case 0:
 				axis = EnumAxis.X;
 				break;
@@ -43,7 +43,7 @@ public class BlockCenterLog extends BlockLog {
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		return state.getValue(LOG_AXIS).ordinal();
+		return state.getValue(LOG_AXIS).ordinal() << 2;
 	}
 
 	protected BlockStateContainer createBlockState()
