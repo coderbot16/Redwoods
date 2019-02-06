@@ -1,0 +1,10 @@
+{
+  "variants": {
+	"stage=0": {
+	  "model": "redwoods:redwood_sapling"
+	},
+	"stage=1": {
+	  "model": "redwoods:redwood_sapling"
+	}
+  }
+}

@@ -2,3 +2,9 @@ tile.redwoods.redwood_log.name=Redwood Log
 tile.redwoods.fir_log.name=Fir Log
 tile.redwoods.redwood_log_quarter.name=Redwood Log
 tile.redwoods.fir_log_quarter.name=Fir Log
+
+tile.redwoods.redwood_sapling.name=Redwood Sapling
+tile.redwoods.fir_sapling.name=Fir Sapling
+
+tile.redwoods.redwood_leaves.name=Redwood Leaves
+tile.redwoods.fir_leaves.name=Fir Leaves
