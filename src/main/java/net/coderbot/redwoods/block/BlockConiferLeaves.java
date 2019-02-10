@@ -37,6 +37,8 @@ public class BlockConiferLeaves extends BlockLeaves {
 
 		this.sapling = sapling;
 		this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, true).withProperty(DECAYABLE, true));
+
+		this.setLightOpacity(RedwoodsConfig.leavesDiffuseSkylight ? 1 : 0);
 	}
 
 	@Override

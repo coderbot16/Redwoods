@@ -13,8 +13,12 @@ import net.minecraftforge.fml.relauncher.Side;
 @Config.LangKey("redwoods.config.title")
 public class RedwoodsConfig {
 	@Config.Comment("Use the trick found in OptiLeaves 1.6.4 to significantly reduce lag from conifer leaf rendering. " +
-			        "This makes leaves appear much more hollow, but looks better than Fast graphics and runs almost as well.")
-	public static boolean useOptiLeaves = false;
+	                "This makes leaves appear much more hollow, but looks better than Fast graphics and runs almost as well.")
+	public static boolean useOptiLeaves = true;
+
+	@Config.Comment("Whether leaves will have a nonzero light opacity, like vanilla leaves. They have no opacity by" +
+	                "default to avoid lag from lighting updates and mob spawns.")
+	public static boolean leavesDiffuseSkylight = false;
 
 	@Mod.EventBusSubscriber(modid = Redwoods.MODID)
 	private static class EventHandler {
