@@ -23,6 +23,8 @@ public class WorldGenMegaConifer extends WorldGenAbstractTree {
 
 	private boolean doBlockNotify;
 
+	private static final int EXTRA_LEAVES_HEIGHT = 2;
+
 	public WorldGenMegaConifer(boolean notify, IBlockState woodSW, IBlockState woodNW, IBlockState woodNE, IBlockState woodSE, IBlockState leaves) {
 		super(notify);
 		this.doBlockNotify = notify;
@@ -46,7 +48,7 @@ public class WorldGenMegaConifer extends WorldGenAbstractTree {
 		// Hey, the trees are pretty massive already.
 		int maxRadius = 2 + rand.nextInt(6);
 
-		if(origin.getY() + height + 1 > world.getHeight() || origin.getY() < 1) {
+		if(origin.getY() + height + 1 + EXTRA_LEAVES_HEIGHT > world.getHeight() || origin.getY() < 1) {
 			return false;
 		}
 
@@ -103,7 +105,7 @@ public class WorldGenMegaConifer extends WorldGenAbstractTree {
 			}
 		}
 
-		for(int dY = bareTrunkHeight; dY < height; dY++) {
+		for(int dY = bareTrunkHeight; dY < height + EXTRA_LEAVES_HEIGHT; dY++) {
 			for(int dZ = -radius; dZ <= radius + 1; dZ++) {
 				for(int dX = -radius; dX <= radius + 1; dX++) {
 					pos.setPos(origin.getX() + dX, origin.getY() + dY, origin.getZ() + dZ);
@@ -126,7 +128,7 @@ public class WorldGenMegaConifer extends WorldGenAbstractTree {
 
 		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(origin);
 
-		for(int dY = height; dY >= bareTrunkHeight; dY--) {
+		for(int dY = height + EXTRA_LEAVES_HEIGHT; dY >= bareTrunkHeight; dY--) {
 			for(int dZ = -radius; dZ <= radius + 1; dZ++) {
 				for(int dX = -radius; dX <= radius + 1; dX++) {
 					if(radius > 0 && (dZ == -radius || dZ == radius + 1) && (dX == -radius || dX == radius + 1)) {
