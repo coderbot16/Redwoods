@@ -52,8 +52,8 @@ public class WorldGenMegaConifer extends WorldGenAbstractTree {
 			return false;
 		}
 
-		for(int dZ = 0; dZ < 1; dZ++) {
-			for(int dX = 0; dX < 1; dX++) {
+		for(int dZ = 0; dZ < 2; dZ++) {
+			for(int dX = 0; dX < 2; dX++) {
 				BlockPos below = origin.add(dX, -1, dZ);
 				IBlockState soil = world.getBlockState(below);
 
