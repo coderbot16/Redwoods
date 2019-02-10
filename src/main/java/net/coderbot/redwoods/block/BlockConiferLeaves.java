@@ -143,6 +143,30 @@ public class BlockConiferLeaves extends BlockLeaves {
 		return true;
 	}
 
+	// Set to false during worldgen to prevent massive cascading and block update lag.
+	public static boolean allowLeavesDecay = true;
+
+	@Override
+	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+	{
+		if(!allowLeavesDecay) {
+			return;
+		}
+
+		if (worldIn.isAreaLoaded(pos.add(-5, -5, -5), pos.add(5, 5, 5)))
+		{
+			for (BlockPos blockpos : BlockPos.getAllInBox(pos.add(-4, -4, -4), pos.add(4, 4, 4)))
+			{
+				IBlockState iblockstate = worldIn.getBlockState(blockpos);
+
+				if (iblockstate.getBlock().isLeaves(iblockstate, worldIn, blockpos))
+				{
+					iblockstate.getBlock().beginLeavesDecay(iblockstate, worldIn, blockpos);
+				}
+			}
+		}
+	}
+
 	/**
 	 * Meant to mimic the behavior of vanilla leaf decay in {@link BlockLeaves#updateTick(World, BlockPos, IBlockState, Random)}
 	 * However, the algorithm has been revamped to be far more performant at its scale, going from O(radius^4) to O(radius^3)

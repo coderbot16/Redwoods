@@ -1,5 +1,6 @@
 package net.coderbot.redwoods.world;
 
+import net.coderbot.redwoods.block.BlockConiferLeaves;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -20,8 +21,11 @@ public class WorldGenMegaConifer extends WorldGenAbstractTree {
 	private IBlockState woodSE;
 	private IBlockState leaves;
 
+	private boolean doBlockNotify;
+
 	public WorldGenMegaConifer(boolean notify, IBlockState woodSW, IBlockState woodNW, IBlockState woodNE, IBlockState woodSE, IBlockState leaves) {
 		super(notify);
+		this.doBlockNotify = notify;
 
 		this.woodSW = woodSW;
 		this.woodNW = woodNW;
@@ -69,8 +73,18 @@ public class WorldGenMegaConifer extends WorldGenAbstractTree {
 			}
 		}
 
+		boolean oldAllowLeavesDecay = BlockConiferLeaves.allowLeavesDecay;
+		if(!doBlockNotify) {
+			BlockConiferLeaves.allowLeavesDecay = false;
+		}
+
 		growLeaves(world, origin, height, bareTrunkHeight, maxRadius);
 		growTrunk(world, origin, height);
+
+		if(!doBlockNotify) {
+			BlockConiferLeaves.allowLeavesDecay = oldAllowLeavesDecay;
+		}
+
 		return true;
 	}
 
@@ -168,5 +182,21 @@ public class WorldGenMegaConifer extends WorldGenAbstractTree {
 		}
 
 		return block == Blocks.GRASS || block == Blocks.DIRT || block == Blocks.LOG || block == Blocks.LOG2 || block == Blocks.SAPLING || block == Blocks.VINE;
+	}
+
+	@Override
+	protected void setBlockAndNotifyAdequately(World worldIn, BlockPos pos, IBlockState state)
+	{
+		if (this.doBlockNotify)
+		{
+			worldIn.setBlockState(pos, state, 3);
+		}
+		else
+		{
+			// Don't notify neighbors, don't load adjacent chunks.
+			// The leaves will be just fine.
+
+			worldIn.setBlockState(pos, state, 2 | 16);
+		}
 	}
 }
