@@ -39,7 +39,7 @@ public class WorldGenMegaConifer extends WorldGenerator {
 		// Maximum leaf radius.
 		// Note: Old EBXL had a maximum radius of 10, but unfortunately that would cause cascading world generation.
 		// Hey, the trees are pretty massive already.
-		int maxRadius = 2 + rand.nextInt(7);
+		int maxRadius = 2 + rand.nextInt(6);
 
 		if(origin.getY() + height + 1 > world.getHeight() || origin.getY() < 1) {
 			return false;
