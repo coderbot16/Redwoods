@@ -1,0 +1,1 @@
+Redwoods uses textures from the [ExtrabiomesXL](https://github.com/ExtrabiomesXL/ExtrabiomesX) mod, which are licensed under a [Creative Commons Attribution-ShareAlike 3.0 Unported License](https://creativecommons.org/licenses/by-sa/3.0).
