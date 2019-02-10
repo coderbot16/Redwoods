@@ -1,6 +1,7 @@
 package net.coderbot.redwoods.block;
 
 import net.coderbot.redwoods.world.WorldGenConifer;
+import net.coderbot.redwoods.world.WorldGenMegaConifer;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
@@ -22,15 +23,17 @@ public class BlockConiferSapling extends BlockBush implements IGrowable {
 	protected static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.1, 0.0, 0.1, 0.9, 0.8, 0.9);
 
 	private WorldGenConifer generator;
+	private WorldGenMegaConifer generatorMega;
 
-	public BlockConiferSapling(IBlockState wood, IBlockState leaves) {
+	public BlockConiferSapling(TreeDefinition tree) {
 		super();
 
 		this.setDefaultState(this.blockState.getBaseState().withProperty(STAGE, 0));
 		setSoundType(SoundType.PLANT);
 		setHardness(0.0F);
 
-		generator = new WorldGenConifer(true, wood, leaves);
+		generator = new WorldGenConifer(true, tree.wood, tree.leaves);
+		generatorMega = new WorldGenMegaConifer(true, tree.woodSW, tree.woodNW, tree.woodNE, tree.woodSE, tree.leaves);
 	}
 
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
@@ -67,10 +70,49 @@ public class BlockConiferSapling extends BlockBush implements IGrowable {
 	public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand) {
 		if (!TerrainGen.saplingGrowTree(worldIn, rand, pos)) return;
 
-		worldIn.setBlockToAir(pos);
+		int dX = 0;
+		int dZ;
+		boolean mega = false;
 
-		if(!generator.generate(worldIn, rand, pos)) {
-			worldIn.setBlockState(pos, this.getDefaultState().withProperty(STAGE, 1));
+		outer:
+		for(dZ = 0; dZ >= -1; dZ--) {
+			for(dX = 0; dX >= -1; dX--) {
+				if(isTwoByTwoOfType(worldIn, pos, dX, dZ)) {
+					mega = true;
+					break outer;
+				}
+			}
+		}
+
+		if(!mega) {
+			worldIn.setBlockToAir(pos);
+
+			if(!generator.generate(worldIn, rand, pos)) {
+				worldIn.setBlockState(pos, this.getDefaultState().withProperty(STAGE, 1));
+			}
+		} else {
+			IBlockState[][] oldStates = new IBlockState[2][2];
+
+			BlockPos generatePos = pos.add(dX, 0, dZ);
+
+			for(dZ = 0; dZ < 2; dZ++) {
+				for(dX = 0; dX < 2; dX++) {
+					BlockPos sapling = generatePos.add(dX, 0, dZ);
+
+					oldStates[dZ][dX] = worldIn.getBlockState(sapling);
+					worldIn.setBlockToAir(sapling);
+				}
+			}
+
+			if(!generatorMega.generate(worldIn, rand, generatePos)) {
+				for(dZ = 0; dZ < 2; dZ++) {
+					for(dX = 0; dX < 2; dX++) {
+						BlockPos sapling = generatePos.add(dX, 0, dZ);
+
+						worldIn.setBlockState(sapling, oldStates[dZ][dX]);
+					}
+				}
+			}
 		}
 	}
 
@@ -115,5 +157,14 @@ public class BlockConiferSapling extends BlockBush implements IGrowable {
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, STAGE);
+	}
+
+	public static class TreeDefinition {
+		public IBlockState wood;
+		public IBlockState woodSW;
+		public IBlockState woodNW;
+		public IBlockState woodNE;
+		public IBlockState woodSE;
+		public IBlockState leaves;
 	}
 }

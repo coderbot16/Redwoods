@@ -12,46 +12,64 @@ import net.minecraftforge.common.IPlantable;
 
 import java.util.Random;
 
-public class WorldGenConifer extends WorldGenerator {
-	private IBlockState wood;
+public class WorldGenMegaConifer extends WorldGenerator {
+	private IBlockState woodSW;
+	private IBlockState woodNW;
+	private IBlockState woodNE;
+	private IBlockState woodSE;
 	private IBlockState leaves;
 
-	public WorldGenConifer(boolean notify, IBlockState wood, IBlockState leaves) {
+	public WorldGenMegaConifer(boolean notify, IBlockState woodSW, IBlockState woodNW, IBlockState woodNE, IBlockState woodSE, IBlockState leaves) {
 		super(notify);
 
-		this.wood = wood;
+		this.woodSW = woodSW;
+		this.woodNW = woodNW;
+		this.woodNE = woodNE;
+		this.woodSE = woodSE;
 		this.leaves = leaves;
 	}
 
 	public boolean generate(World world, Random rand, BlockPos origin) {
 		// Total trunk height
-		int height = rand.nextInt(8) + 24;
+		int height = rand.nextInt(16) + 32;
 
 		// How much "bare trunk" there will be.
 		int bareTrunkHeight = 1 + rand.nextInt(12);
 
 		// Maximum leaf radius.
-		int maxRadius = 2 + rand.nextInt(6);
+		// Note: Old EBXL had a maximum radius of 10, but unfortunately that would cause cascading world generation.
+		// Hey, the trees are pretty massive already.
+		int maxRadius = 2 + rand.nextInt(7);
 
 		if(origin.getY() + height + 1 > world.getHeight() || origin.getY() < 1) {
 			return false;
 		}
 
-		BlockPos below = origin.down();
-		IBlockState soil = world.getBlockState(below);
+		for(int dZ = 0; dZ < 1; dZ++) {
+			for(int dX = 0; dX < 1; dX++) {
+				BlockPos below = origin.add(dX, -1, dZ);
+				IBlockState soil = world.getBlockState(below);
 
-		if(!soil.getBlock().canSustainPlant(soil, world, below, EnumFacing.UP, (IPlantable)Blocks.SAPLING)) {
-			return false;
+				if(!soil.getBlock().canSustainPlant(soil, world, below, EnumFacing.UP, (IPlantable)Blocks.SAPLING)) {
+					return false;
+				}
+			}
 		}
 
 		if(!checkForObstructions(world, origin, height, bareTrunkHeight, maxRadius)) {
 			return false;
 		}
 
-		setBlockAndNotifyAdequately(world, origin.down(), Blocks.DIRT.getDefaultState());
-		growLeaves(world, origin, height, bareTrunkHeight, maxRadius);
-		growTrunk(world, new BlockPos.MutableBlockPos(origin), height);
+		for(int dZ = 0; dZ < 1; dZ++) {
+			for(int dX = 0; dX < 1; dX++) {
+				BlockPos below = origin.add(dX, -1, dZ);
 
+				setBlockAndNotifyAdequately(world, below, Blocks.DIRT.getDefaultState());
+			}
+		}
+
+		growLeaves(world, origin, height, bareTrunkHeight, maxRadius);
+		growTrunk(world, origin, height);
 		return true;
 	}
 
@@ -59,16 +77,20 @@ public class WorldGenConifer extends WorldGenerator {
 		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(origin);
 
 		for(int i = 0; i < bareTrunkHeight; i++) {
-			IBlockState state = world.getBlockState(pos.move(EnumFacing.UP));
+			boolean canReplaceAll =
+					canReplaceBlock(world, world.getBlockState(pos.setPos(origin.getX(), origin.getY() + i, origin.getZ())), pos) &&
+					canReplaceBlock(world, world.getBlockState(pos.setPos(origin.getX() + 1, origin.getY() + i, origin.getZ())), pos) &&
+					canReplaceBlock(world, world.getBlockState(pos.setPos(origin.getX(), origin.getY() + i, origin.getZ() + 1)), pos) &&
+					canReplaceBlock(world, world.getBlockState(pos.setPos(origin.getX() + 1, origin.getY() + i, origin.getZ() + 1)), pos);
 
-			if(!canReplaceBlock(world, state, pos)) {
+			if(!canReplaceAll) {
 				return false;
 			}
 		}
 
 		for(int dY = bareTrunkHeight; dY < height; dY++) {
-			for(int dZ = -radius; dZ <= radius; dZ++) {
-				for(int dX = -radius; dX <= radius; dX++) {
+			for(int dZ = -radius; dZ <= radius + 1; dZ++) {
+				for(int dX = -radius; dX <= radius + 1; dX++) {
 					pos.setPos(origin.getX() + dX, origin.getY() + dY, origin.getZ() + dZ);
 
 					IBlockState state = world.getBlockState(pos);
@@ -90,9 +112,9 @@ public class WorldGenConifer extends WorldGenerator {
 		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(origin);
 
 		for(int dY = height; dY >= bareTrunkHeight; dY--) {
-			for(int dZ = -radius; dZ <= radius; dZ++) {
-				for(int dX = -radius; dX <= radius; dX++) {
-					if(radius > 0 && Math.abs(dZ) == radius && Math.abs(dX) == radius) {
+			for(int dZ = -radius; dZ <= radius + 1; dZ++) {
+				for(int dX = -radius; dX <= radius + 1; dX++) {
+					if(radius > 0 && (dZ == -radius || dZ == radius + 1) && (dX == -radius || dX == radius + 1)) {
 						// Cull corners
 						continue;
 					}
@@ -121,11 +143,14 @@ public class WorldGenConifer extends WorldGenerator {
 		}
 	}
 
-	private void growTrunk(World world, BlockPos.MutableBlockPos pos, int height) {
-		for(int i = 0; i < height; i++) {
-			setBlockAndNotifyAdequately(world, pos, wood);
+	private void growTrunk(World world, BlockPos origin, int height) {
+		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(origin);
 
-			pos.move(EnumFacing.UP);
+		for(int i = 0; i < height; i++) {
+			setBlockAndNotifyAdequately(world, pos.setPos(origin.getX(), origin.getY() + i, origin.getZ()), woodNW);
+			setBlockAndNotifyAdequately(world, pos.setPos(origin.getX() + 1, origin.getY() + i, origin.getZ()), woodNE);
+			setBlockAndNotifyAdequately(world, pos.setPos(origin.getX(), origin.getY() + i, origin.getZ() + 1), woodSW);
+			setBlockAndNotifyAdequately(world, pos.setPos(origin.getX() + 1, origin.getY() + i, origin.getZ() + 1), woodSE);
 		}
 	}
 
