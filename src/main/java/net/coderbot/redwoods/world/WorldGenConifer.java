@@ -7,12 +7,12 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.common.IPlantable;
 
 import java.util.Random;
 
-public class WorldGenConifer extends WorldGenerator {
+public class WorldGenConifer extends WorldGenAbstractTree {
 	private IBlockState wood;
 	private IBlockState leaves;
 
