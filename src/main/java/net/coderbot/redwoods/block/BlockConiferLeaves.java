@@ -148,7 +148,7 @@ public class BlockConiferLeaves extends BlockLeaves {
 	 * However, the algorithm has been revamped to be far more performant at its scale, going from O(radius^4) to O(radius^3)
 	 * In other words, decay checks for conifer leaves won't kill your TPS as much as it would with the naive vanilla algorithm.
 	 *
-	 * Performance data: Even with several entire tree's worth of leaves decaying each second, TPS only dropped to 19.5.
+	 * Performance data: This appears to take around 40-50μs to check a single leaf block on an i7-4790.
 	 */
 	private static class DecayAlgorithm {
 		private static final int FIELD_SIZE = 32;
