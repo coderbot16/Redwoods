@@ -6,6 +6,7 @@ import net.coderbot.redwoods.block.BlockConiferLeaves;
 import net.coderbot.redwoods.block.BlockConiferSapling;
 import net.coderbot.redwoods.block.BlockQuarterLog;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLog;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
@@ -38,11 +39,11 @@ public class ModBlocks {
 		REDWOOD_LOG_QUARTER = register(event, new BlockQuarterLog(), "redwood_log_quarter");
 		FIR_LOG_QUARTER = register(event, new BlockQuarterLog(), "fir_log_quarter");
 
-		REDWOOD_SAPLING = register(event, new BlockConiferSapling(), "redwood_sapling");
-		FIR_SAPLING = register(event, new BlockConiferSapling(), "fir_sapling");
-
 		REDWOOD_LEAVES = register(event, new BlockConiferLeaves(REDWOOD_SAPLING), "redwood_leaves");
 		FIR_LEAVES = register(event, new BlockConiferLeaves(FIR_SAPLING), "fir_leaves");
+
+		REDWOOD_SAPLING = register(event, new BlockConiferSapling(REDWOOD_LOG.getDefaultState().withProperty(BlockCenterLog.LOG_AXIS, BlockLog.EnumAxis.Y), REDWOOD_LEAVES.getDefaultState()), "redwood_sapling");
+		FIR_SAPLING = register(event, new BlockConiferSapling(FIR_LOG.getDefaultState().withProperty(BlockCenterLog.LOG_AXIS, BlockLog.EnumAxis.Y), FIR_LEAVES.getDefaultState()), "fir_sapling");
 
 		// Burn the blocks!
 		registerFlammables();

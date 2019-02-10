@@ -1,5 +1,6 @@
 package net.coderbot.redwoods.block;
 
+import net.coderbot.redwoods.world.WorldGenConifer;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
@@ -10,6 +11,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.event.terraingen.TerrainGen;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
@@ -19,12 +21,16 @@ public class BlockConiferSapling extends BlockBush implements IGrowable {
 	public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
 	protected static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.1, 0.0, 0.1, 0.9, 0.8, 0.9);
 
-	public BlockConiferSapling() {
+	private WorldGenConifer generator;
+
+	public BlockConiferSapling(IBlockState wood, IBlockState leaves) {
 		super();
 
 		this.setDefaultState(this.blockState.getBaseState().withProperty(STAGE, 0));
 		setSoundType(SoundType.PLANT);
 		setHardness(0.0F);
+
+		generator = new WorldGenConifer(true, wood, leaves);
 	}
 
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
@@ -59,7 +65,13 @@ public class BlockConiferSapling extends BlockBush implements IGrowable {
 	}
 
 	public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-		// TODO
+		if (!TerrainGen.saplingGrowTree(worldIn, rand, pos)) return;
+
+		worldIn.setBlockToAir(pos);
+
+		if(!generator.generate(worldIn, rand, pos)) {
+			worldIn.setBlockState(pos, this.getDefaultState().withProperty(STAGE, 1));
+		}
 	}
 
 	private boolean isTwoByTwoOfType(World worldIn, BlockPos pos, int dX, int dZ)
