@@ -1,5 +1,7 @@
 package net.coderbot.redwoods.world;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
@@ -59,7 +61,7 @@ public class WorldGenConifer extends WorldGenerator {
 		for(int i = 0; i < bareTrunkHeight; i++) {
 			IBlockState state = world.getBlockState(pos.move(EnumFacing.UP));
 
-			if(!state.getBlock().isReplaceable(world, pos)) {
+			if(!canReplaceBlock(world, state, pos)) {
 				return false;
 			}
 		}
@@ -70,7 +72,7 @@ public class WorldGenConifer extends WorldGenerator {
 					pos.setPos(origin.getX() + dX, origin.getY() + dY, origin.getZ() + dZ);
 
 					IBlockState state = world.getBlockState(pos);
-					if(!state.getBlock().isReplaceable(world, pos)) {
+					if(!canReplaceBlock(world, state, pos)) {
 						return false;
 					}
 				}
@@ -125,5 +127,20 @@ public class WorldGenConifer extends WorldGenerator {
 
 			pos.move(EnumFacing.UP);
 		}
+	}
+
+	private static boolean canReplaceBlock(World world, IBlockState state, BlockPos pos) {
+		Block block = state.getBlock();
+
+		if(block.isAir(state, world, pos) || block.isLeaves(state, world, pos) || block.isWood(world, pos)) {
+			return true;
+		}
+
+		Material material = state.getMaterial();
+		if(material == Material.AIR || material == Material.LEAVES) {
+			return true;
+		}
+
+		return block == Blocks.GRASS || block == Blocks.DIRT || block == Blocks.LOG || block == Blocks.LOG2 || block == Blocks.SAPLING || block == Blocks.VINE;
 	}
 }
