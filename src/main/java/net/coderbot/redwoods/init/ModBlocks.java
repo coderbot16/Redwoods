@@ -51,7 +51,7 @@ public class ModBlocks {
 		REDWOOD.woodNW = REDWOOD_LOG_QUARTER.getDefaultState().withProperty(BlockQuarterLog.LOG_AXIS, BlockLog.EnumAxis.Y).withProperty(BlockQuarterLog.BARK_SIDE, BlockQuarterLog.BarkSide.NORTHWEST);
 		REDWOOD.woodNE = REDWOOD_LOG_QUARTER.getDefaultState().withProperty(BlockQuarterLog.LOG_AXIS, BlockLog.EnumAxis.Y).withProperty(BlockQuarterLog.BARK_SIDE, BlockQuarterLog.BarkSide.NORTHEAST);
 		REDWOOD.woodSE = REDWOOD_LOG_QUARTER.getDefaultState().withProperty(BlockQuarterLog.LOG_AXIS, BlockLog.EnumAxis.Y).withProperty(BlockQuarterLog.BARK_SIDE, BlockQuarterLog.BarkSide.SOUTHEAST);
-		REDWOOD.leaves = REDWOOD_LEAVES.getDefaultState();
+		REDWOOD.leaves = REDWOOD_LEAVES.getDefaultState().withProperty(BlockConiferLeaves.CHECK_DECAY, false);
 
 		FIR = new BlockConiferSapling.TreeDefinition();
 		FIR.wood = FIR_LOG.getDefaultState().withProperty(BlockCenterLog.LOG_AXIS, BlockLog.EnumAxis.Y);
@@ -59,7 +59,7 @@ public class ModBlocks {
 		FIR.woodNW = FIR_LOG_QUARTER.getDefaultState().withProperty(BlockQuarterLog.LOG_AXIS, BlockLog.EnumAxis.Y).withProperty(BlockQuarterLog.BARK_SIDE, BlockQuarterLog.BarkSide.NORTHWEST);
 		FIR.woodNE = FIR_LOG_QUARTER.getDefaultState().withProperty(BlockQuarterLog.LOG_AXIS, BlockLog.EnumAxis.Y).withProperty(BlockQuarterLog.BARK_SIDE, BlockQuarterLog.BarkSide.NORTHEAST);
 		FIR.woodSE = FIR_LOG_QUARTER.getDefaultState().withProperty(BlockQuarterLog.LOG_AXIS, BlockLog.EnumAxis.Y).withProperty(BlockQuarterLog.BARK_SIDE, BlockQuarterLog.BarkSide.SOUTHEAST);
-		FIR.leaves = FIR_LEAVES.getDefaultState();
+		FIR.leaves = FIR_LEAVES.getDefaultState().withProperty(BlockConiferLeaves.CHECK_DECAY, false);
 
 		REDWOOD_SAPLING = register(event, new BlockConiferSapling(REDWOOD), "redwood_sapling");
 		FIR_SAPLING = register(event, new BlockConiferSapling(FIR), "fir_sapling");
