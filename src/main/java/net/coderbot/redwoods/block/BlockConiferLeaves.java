@@ -1,5 +1,6 @@
 package net.coderbot.redwoods.block;
 
+import net.coderbot.redwoods.RedwoodsConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
@@ -134,13 +135,11 @@ public class BlockConiferLeaves extends BlockLeaves {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-		if (!Minecraft.getMinecraft().gameSettings.fancyGraphics) {
-			if (!(blockAccess.getBlockState(pos.offset(side)).getBlock() instanceof BlockLeaves)) {
-				return true;
-			}
-			return false;
+		if (!Minecraft.getMinecraft().gameSettings.fancyGraphics || RedwoodsConfig.useOptiLeaves) {
+			return !(blockAccess.getBlockState(pos.offset(side)).getBlock() instanceof BlockConiferLeaves);
+		} else {
+			return true;
 		}
-		return true;
 	}
 
 	// Set to false during worldgen to prevent massive cascading and block update lag.
