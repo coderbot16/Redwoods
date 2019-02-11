@@ -1,10 +1,7 @@
 package net.coderbot.redwoods.init;
 
 import net.coderbot.redwoods.Redwoods;
-import net.coderbot.redwoods.block.BlockCenterLog;
-import net.coderbot.redwoods.block.BlockConiferLeaves;
-import net.coderbot.redwoods.block.BlockConiferSapling;
-import net.coderbot.redwoods.block.BlockQuarterLog;
+import net.coderbot.redwoods.block.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.client.renderer.block.statemap.StateMap;
@@ -33,6 +30,27 @@ public class ModBlocks {
 
 	public static BlockConiferSapling.TreeDefinition REDWOOD;
 	public static BlockConiferSapling.TreeDefinition FIR;
+
+	public static Block REDWOOD_PLANKS;
+	public static Block FIR_PLANKS;
+
+	public static Block REDWOOD_SLAB;
+	public static Block FIR_SLAB;
+
+	public static Block REDWOOD_DOUBLE_SLAB;
+	public static Block FIR_DOUBLE_SLAB;
+
+	public static Block REDWOOD_STAIRS;
+	public static Block FIR_STAIRS;
+
+	public static Block REDWOOD_FENCE;
+	public static Block FIR_FENCE;
+
+	public static Block REDWOOD_FENCE_GATE;
+	public static Block FIR_FENCE_GATE;
+
+	public static Block REDWOOD_DOOR;
+	public static Block FIR_DOOR;
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -64,6 +82,15 @@ public class ModBlocks {
 		REDWOOD_SAPLING = register(event, new BlockConiferSapling(REDWOOD), "redwood_sapling");
 		FIR_SAPLING = register(event, new BlockConiferSapling(FIR), "fir_sapling");
 
+		REDWOOD_PLANKS = register(event, new BlockConiferPlanks(), "redwood_planks");
+		FIR_PLANKS = register(event, new BlockConiferPlanks(), "fir_planks");
+
+		REDWOOD_SLAB = register(event, new BlockConiferSlab(), "redwood_slab");
+		FIR_SLAB = register(event, new BlockConiferSlab(), "fir_slab");
+
+		REDWOOD_DOUBLE_SLAB = register(event, new BlockConiferDoubleSlab(), "redwood_double_slab");
+		FIR_DOUBLE_SLAB = register(event, new BlockConiferDoubleSlab(), "fir_double_slab");
+
 		// Burn the blocks!
 		registerFlammables();
 	}
@@ -76,6 +103,15 @@ public class ModBlocks {
 
 		Blocks.FIRE.setFireInfo(REDWOOD_LEAVES, 30, 60);
 		Blocks.FIRE.setFireInfo(FIR_LEAVES, 30, 60);
+
+		Blocks.FIRE.setFireInfo(REDWOOD_PLANKS, 5, 20);
+		Blocks.FIRE.setFireInfo(FIR_PLANKS, 5, 20);
+
+		Blocks.FIRE.setFireInfo(REDWOOD_SLAB, 5, 20);
+		Blocks.FIRE.setFireInfo(FIR_SLAB, 5, 20);
+
+		Blocks.FIRE.setFireInfo(REDWOOD_DOUBLE_SLAB, 5, 20);
+		Blocks.FIRE.setFireInfo(FIR_DOUBLE_SLAB, 5, 20);
 	}
 
 	@SubscribeEvent
@@ -83,6 +119,10 @@ public class ModBlocks {
 	public static void registerModels(ModelRegistryEvent event) {
 		ModelLoader.setCustomStateMapper(REDWOOD_LEAVES, new StateMap.Builder().ignore(BlockConiferLeaves.CHECK_DECAY, BlockConiferLeaves.DECAYABLE).build());
 		ModelLoader.setCustomStateMapper(FIR_LEAVES, new StateMap.Builder().ignore(BlockConiferLeaves.CHECK_DECAY, BlockConiferLeaves.DECAYABLE).build());
+		ModelLoader.setCustomStateMapper(REDWOOD_SLAB, new StateMap.Builder().ignore(BlockConiferSlab.VARIANT).build());
+		ModelLoader.setCustomStateMapper(FIR_SLAB, new StateMap.Builder().ignore(BlockConiferSlab.VARIANT).build());
+		ModelLoader.setCustomStateMapper(REDWOOD_DOUBLE_SLAB, new StateMap.Builder().ignore(BlockConiferSlab.VARIANT).build());
+		ModelLoader.setCustomStateMapper(FIR_DOUBLE_SLAB, new StateMap.Builder().ignore(BlockConiferSlab.VARIANT).build());
 	}
 
 	private static Block register(RegistryEvent.Register<Block> event, Block block, String name) {

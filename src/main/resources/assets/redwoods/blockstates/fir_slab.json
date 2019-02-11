@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "half=bottom": { "model": "redwoods:half_slab_fir" },
+    "half=top": { "model": "redwoods:upper_slab_fir" }
+  }
+}

@@ -20,6 +20,12 @@ public class ModItems {
 	public static Item REDWOOD_LEAVES;
 	public static Item FIR_LEAVES;
 
+	public static Item REDWOOD_PLANKS;
+	public static Item FIR_PLANKS;
+
+	public static Item REDWOOD_SLAB;
+	public static Item FIR_SLAB;
+
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 		REDWOOD_LOG = register(event, ModBlocks.REDWOOD_LOG);
@@ -32,6 +38,13 @@ public class ModItems {
 
 		REDWOOD_LEAVES = register(event, ModBlocks.REDWOOD_LEAVES);
 		FIR_LEAVES = register(event, ModBlocks.FIR_LEAVES);
+
+		REDWOOD_PLANKS = register(event, ModBlocks.REDWOOD_PLANKS);
+		FIR_PLANKS = register(event, ModBlocks.FIR_PLANKS);
+
+		// TODO: Need to use ItemSlab
+		REDWOOD_SLAB = register(event, ModBlocks.REDWOOD_SLAB);
+		FIR_SLAB = register(event, ModBlocks.FIR_SLAB);
 	}
 
 	private static Item register(RegistryEvent.Register<Item> event, Block block) {
