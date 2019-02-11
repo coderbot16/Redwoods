@@ -104,7 +104,7 @@ public class ModBiomes {
 		// Snowy Rainforest
 		SNOWY_RAINFOREST_PROPS = new BiomeConiferous.Properties("Snowy Rainforest");
 		SNOWY_RAINFOREST_PROPS.biomeProperties
-				.setTemperature(0.25F)
+				.setTemperature(-0.5F)
 				.setRainfall(1.3F)
 				.setBaseHeight(0.95F)
 				.setHeightVariation(0.55F)
