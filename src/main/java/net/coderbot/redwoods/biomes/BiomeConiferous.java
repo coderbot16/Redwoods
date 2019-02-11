@@ -114,7 +114,7 @@ public class BiomeConiferous extends Biome {
 			}
 
 			if(firMega) {
-				BlockConiferSapling.TreeDefinition tree = ModBlocks.REDWOOD;
+				BlockConiferSapling.TreeDefinition tree = ModBlocks.FIR;
 				trees[enabled] = new WorldGenMegaConifer(false, tree.woodSW, tree.woodNW, tree.woodNE, tree.woodSE, tree.leaves);
 			}
 
