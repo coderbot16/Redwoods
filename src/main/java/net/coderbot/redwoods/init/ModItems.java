@@ -32,6 +32,12 @@ public class ModItems {
 	public static Item REDWOOD_STAIRS;
 	public static Item FIR_STAIRS;
 
+	public static Item REDWOOD_FENCE;
+	public static Item FIR_FENCE;
+
+	public static Item REDWOOD_FENCE_GATE;
+	public static Item FIR_FENCE_GATE;
+
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 		REDWOOD_LOG = register(event, ModBlocks.REDWOOD_LOG);
@@ -53,6 +59,12 @@ public class ModItems {
 
 		REDWOOD_STAIRS = register(event, ModBlocks.REDWOOD_STAIRS);
 		FIR_STAIRS = register(event, ModBlocks.FIR_STAIRS);
+
+		REDWOOD_FENCE = register(event, ModBlocks.REDWOOD_FENCE);
+		FIR_FENCE = register(event, ModBlocks.FIR_FENCE);
+
+		REDWOOD_FENCE_GATE = register(event, ModBlocks.REDWOOD_FENCE_GATE);
+		FIR_FENCE_GATE = register(event, ModBlocks.FIR_FENCE_GATE);
 	}
 
 	private static Item register(RegistryEvent.Register<Item> event, Block block) {

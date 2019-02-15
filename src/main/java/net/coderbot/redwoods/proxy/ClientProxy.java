@@ -3,6 +3,7 @@ package net.coderbot.redwoods.proxy;
 import net.coderbot.redwoods.block.BlockConiferLeaves;
 import net.coderbot.redwoods.init.ModBlocks;
 import net.coderbot.redwoods.init.ModItems;
+import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
@@ -21,6 +22,8 @@ public class ClientProxy extends CommonProxy {
 	public void registerModels(ModelRegistryEvent event) {
 		ModelLoader.setCustomStateMapper(ModBlocks.REDWOOD_LEAVES, new StateMap.Builder().ignore(BlockConiferLeaves.CHECK_DECAY, BlockConiferLeaves.DECAYABLE).build());
 		ModelLoader.setCustomStateMapper(ModBlocks.FIR_LEAVES, new StateMap.Builder().ignore(BlockConiferLeaves.CHECK_DECAY, BlockConiferLeaves.DECAYABLE).build());
+		ModelLoader.setCustomStateMapper(ModBlocks.REDWOOD_FENCE_GATE, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
+		ModelLoader.setCustomStateMapper(ModBlocks.FIR_FENCE_GATE, new StateMap.Builder().ignore(BlockFenceGate.POWERED).build());
 
 		registerModel(ModItems.REDWOOD_LOG);
 		registerModel(ModItems.FIR_LOG);
@@ -41,6 +44,12 @@ public class ClientProxy extends CommonProxy {
 
 		registerModel(ModItems.REDWOOD_STAIRS);
 		registerModel(ModItems.FIR_STAIRS);
+
+		registerModel(ModItems.REDWOOD_FENCE);
+		registerModel(ModItems.FIR_FENCE);
+
+		registerModel(ModItems.REDWOOD_FENCE_GATE);
+		registerModel(ModItems.FIR_FENCE_GATE);
 	}
 
 	@SubscribeEvent

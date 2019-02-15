@@ -2,10 +2,9 @@ package net.coderbot.redwoods.init;
 
 import net.coderbot.redwoods.Redwoods;
 import net.coderbot.redwoods.block.*;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockLog;
-import net.minecraft.block.BlockSlab;
-import net.minecraft.block.BlockStairs;
+import net.minecraft.block.*;
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
@@ -96,6 +95,16 @@ public class ModBlocks {
 		REDWOOD_STAIRS = register(event, new BlockConiferStairs(REDWOOD_PLANKS), "redwood_stairs");
 		FIR_STAIRS = register(event, new BlockConiferStairs(FIR_PLANKS), "fir_stairs");
 
+		REDWOOD_FENCE = register(event, new BlockFence(Material.WOOD, MapColor.OBSIDIAN) {{ setSoundType(SoundType.WOOD); }}, "redwood_fence");
+		REDWOOD_FENCE.setHardness(2.0F).setResistance(5.0F);
+		FIR_FENCE = register(event, new BlockFence(Material.WOOD, MapColor.OBSIDIAN) {{ setSoundType(SoundType.WOOD); }}, "fir_fence");
+		FIR_FENCE.setHardness(2.0F).setResistance(5.0F);
+
+		REDWOOD_FENCE_GATE = register(event, new BlockFenceGate(BlockPlanks.EnumType.SPRUCE) {{ setSoundType(SoundType.WOOD); }}, "redwood_fence_gate");
+		REDWOOD_FENCE_GATE.setHardness(2.0F).setResistance(5.0F);
+		FIR_FENCE_GATE = register(event, new BlockFenceGate(BlockPlanks.EnumType.SPRUCE) {{ setSoundType(SoundType.WOOD); }}, "fir_fence_gate");
+		FIR_FENCE_GATE.setHardness(2.0F).setResistance(5.0F);
+
 		// Burn the blocks!
 		registerFlammables();
 	}
@@ -120,6 +129,12 @@ public class ModBlocks {
 
 		Blocks.FIRE.setFireInfo(REDWOOD_STAIRS, 5, 20);
 		Blocks.FIRE.setFireInfo(FIR_STAIRS, 5, 20);
+
+		Blocks.FIRE.setFireInfo(REDWOOD_FENCE, 5, 20);
+		Blocks.FIRE.setFireInfo(FIR_FENCE, 5, 20);
+
+		Blocks.FIRE.setFireInfo(REDWOOD_FENCE_GATE, 5, 20);
+		Blocks.FIRE.setFireInfo(FIR_FENCE_GATE, 5, 20);
 	}
 
 	@SubscribeEvent

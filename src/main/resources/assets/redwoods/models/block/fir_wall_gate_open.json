@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_gate_open",
+  "textures": {
+	"texture": "redwoods:blocks/planks_fir"
+  }
+}

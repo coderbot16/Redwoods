@@ -20,3 +20,9 @@ tile.redwoods.fir_slab.name=Fir Wood Slab
 
 tile.redwoods.redwood_stairs.name=Redwood Stairs
 tile.redwoods.fir_stairs.name=Fir Wood Stairs
+
+tile.redwoods.redwood_fence.name=Redwood Fence
+tile.redwoods.fir_fence.name=Fir Fence
+
+tile.redwoods.redwood_fence_gate.name=Redwood Fence Gate
+tile.redwoods.fir_fence_gate.name=Fir Fence Gate
