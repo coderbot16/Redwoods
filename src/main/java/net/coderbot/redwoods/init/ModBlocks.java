@@ -50,8 +50,8 @@ public class ModBlocks {
 	public static BlockFenceGate REDWOOD_FENCE_GATE;
 	public static BlockFenceGate FIR_FENCE_GATE;
 
-	// TODO: public static Block REDWOOD_DOOR;
-	// TODO: public static Block FIR_DOOR;
+	public static Block REDWOOD_DOOR;
+	public static Block FIR_DOOR;
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -104,6 +104,11 @@ public class ModBlocks {
 		REDWOOD_FENCE_GATE.setHardness(2.0F).setResistance(5.0F);
 		FIR_FENCE_GATE = register(event, new BlockFenceGate(BlockPlanks.EnumType.SPRUCE) {{ setSoundType(SoundType.WOOD); }}, "fir_fence_gate");
 		FIR_FENCE_GATE.setHardness(2.0F).setResistance(5.0F);
+
+		REDWOOD_DOOR = register(event, new BlockConiferDoor(), "redwood_door");
+		REDWOOD_DOOR.setHardness(3.0F);
+		FIR_DOOR = register(event, new BlockConiferDoor(), "fir_door");
+		FIR_DOOR.setHardness(3.0F);
 
 		// Burn the blocks!
 		registerFlammables();

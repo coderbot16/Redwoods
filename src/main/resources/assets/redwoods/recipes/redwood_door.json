@@ -11,7 +11,7 @@
 		}
 	},
 	"result": {
-		"item": "minecraft:wooden_door",
+		"item": "redwoods:redwood_door",
 		"count": 3
 	}
 }

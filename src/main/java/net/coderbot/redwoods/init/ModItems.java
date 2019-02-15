@@ -4,6 +4,7 @@ import net.coderbot.redwoods.Redwoods;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemDoor;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
@@ -39,6 +40,9 @@ public class ModItems {
 	public static Item REDWOOD_FENCE_GATE;
 	public static Item FIR_FENCE_GATE;
 
+	public static Item REDWOOD_DOOR;
+	public static Item FIR_DOOR;
+
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 		REDWOOD_LOG = register(event, ModBlocks.REDWOOD_LOG);
@@ -67,6 +71,9 @@ public class ModItems {
 		REDWOOD_FENCE_GATE = register(event, ModBlocks.REDWOOD_FENCE_GATE);
 		FIR_FENCE_GATE = register(event, ModBlocks.FIR_FENCE_GATE);
 
+		REDWOOD_DOOR = register(event, new ItemDoor(ModBlocks.REDWOOD_DOOR), "redwood_door");
+		FIR_DOOR = register(event, new ItemDoor(ModBlocks.FIR_DOOR), "fir_door");
+
 		ModBlocks.REDWOOD_LEAVES.setSapling(REDWOOD_SAPLING);
 		ModBlocks.FIR_LEAVES.setSapling(FIR_SAPLING);
 	}
@@ -80,7 +87,7 @@ public class ModItems {
 		registerOre("stairWood", REDWOOD_STAIRS, FIR_STAIRS);
 		registerOre("fenceWood", REDWOOD_FENCE, FIR_FENCE);
 		registerOre("fenceGateWood", REDWOOD_FENCE_GATE, FIR_FENCE_GATE);
-		// TODO: doorWood
+		registerOre("doorWood", REDWOOD_DOOR, FIR_DOOR);
 	}
 
 	private static Item register(RegistryEvent.Register<Item> event, Block block) {
