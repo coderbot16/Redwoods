@@ -18,40 +18,40 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Mod.EventBusSubscriber
 public class ModBlocks {
-	public static Block REDWOOD_LOG;
-	public static Block FIR_LOG;
-	public static Block REDWOOD_LOG_QUARTER;
-	public static Block FIR_LOG_QUARTER;
+	public static BlockCenterLog REDWOOD_LOG;
+	public static BlockCenterLog FIR_LOG;
+	public static BlockQuarterLog REDWOOD_LOG_QUARTER;
+	public static BlockQuarterLog FIR_LOG_QUARTER;
 
-	public static Block REDWOOD_SAPLING;
-	public static Block FIR_SAPLING;
+	public static BlockConiferSapling REDWOOD_SAPLING;
+	public static BlockConiferSapling FIR_SAPLING;
 
-	public static Block REDWOOD_LEAVES;
-	public static Block FIR_LEAVES;
+	public static BlockConiferLeaves REDWOOD_LEAVES;
+	public static BlockConiferLeaves FIR_LEAVES;
 
 	public static BlockConiferSapling.TreeDefinition REDWOOD;
 	public static BlockConiferSapling.TreeDefinition FIR;
 
-	public static Block REDWOOD_PLANKS;
-	public static Block FIR_PLANKS;
+	public static BlockConiferPlanks REDWOOD_PLANKS;
+	public static BlockConiferPlanks FIR_PLANKS;
 
-	public static BlockSlab REDWOOD_SLAB;
-	public static BlockSlab FIR_SLAB;
+	public static BlockConiferSlab REDWOOD_SLAB;
+	public static BlockConiferSlab FIR_SLAB;
 
-	public static BlockSlab REDWOOD_DOUBLE_SLAB;
-	public static BlockSlab FIR_DOUBLE_SLAB;
+	public static BlockConiferSlab REDWOOD_DOUBLE_SLAB;
+	public static BlockConiferSlab FIR_DOUBLE_SLAB;
 
-	public static Block REDWOOD_STAIRS;
-	public static Block FIR_STAIRS;
+	public static BlockConiferStairs REDWOOD_STAIRS;
+	public static BlockConiferStairs FIR_STAIRS;
 
-	public static Block REDWOOD_FENCE;
-	public static Block FIR_FENCE;
+	public static BlockFence REDWOOD_FENCE;
+	public static BlockFence FIR_FENCE;
 
-	public static Block REDWOOD_FENCE_GATE;
-	public static Block FIR_FENCE_GATE;
+	public static BlockFenceGate REDWOOD_FENCE_GATE;
+	public static BlockFenceGate FIR_FENCE_GATE;
 
-	public static Block REDWOOD_DOOR;
-	public static Block FIR_DOOR;
+	// TODO: public static Block REDWOOD_DOOR;
+	// TODO: public static Block FIR_DOOR;
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -61,8 +61,8 @@ public class ModBlocks {
 		REDWOOD_LOG_QUARTER = register(event, new BlockQuarterLog(), "redwood_log_quarter");
 		FIR_LOG_QUARTER = register(event, new BlockQuarterLog(), "fir_log_quarter");
 
-		REDWOOD_LEAVES = register(event, new BlockConiferLeaves(REDWOOD_SAPLING), "redwood_leaves");
-		FIR_LEAVES = register(event, new BlockConiferLeaves(FIR_SAPLING), "fir_leaves");
+		REDWOOD_LEAVES = register(event, new BlockConiferLeaves(), "redwood_leaves");
+		FIR_LEAVES = register(event, new BlockConiferLeaves(), "fir_leaves");
 
 		REDWOOD = new BlockConiferSapling.TreeDefinition();
 		REDWOOD.wood = REDWOOD_LOG.getDefaultState().withProperty(BlockCenterLog.LOG_AXIS, BlockLog.EnumAxis.Y);
@@ -148,17 +148,7 @@ public class ModBlocks {
 		ModelLoader.setCustomStateMapper(FIR_DOUBLE_SLAB, new StateMap.Builder().ignore(BlockConiferSlab.VARIANT).build());
 	}
 
-	private static Block register(RegistryEvent.Register<Block> event, Block block, String name) {
-		block.setRegistryName(new ResourceLocation(Redwoods.MODID, name));
-		block.setUnlocalizedName(Redwoods.MODID + "." + name);
-		block.setCreativeTab(Redwoods.TAB);
-
-		event.getRegistry().register(block);
-
-		return block;
-	}
-
-	private static BlockSlab register(RegistryEvent.Register<Block> event, BlockSlab block, String name) {
+	private static <T extends Block> T register(RegistryEvent.Register<Block> event, T block, String name) {
 		block.setRegistryName(new ResourceLocation(Redwoods.MODID, name));
 		block.setUnlocalizedName(Redwoods.MODID + "." + name);
 		block.setCreativeTab(Redwoods.TAB);

@@ -66,6 +66,9 @@ public class ModItems {
 
 		REDWOOD_FENCE_GATE = register(event, ModBlocks.REDWOOD_FENCE_GATE);
 		FIR_FENCE_GATE = register(event, ModBlocks.FIR_FENCE_GATE);
+
+		ModBlocks.REDWOOD_LEAVES.setSapling(REDWOOD_SAPLING);
+		ModBlocks.FIR_LEAVES.setSapling(FIR_SAPLING);
 	}
 
 	public static void registerOreDict() {

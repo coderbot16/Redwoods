@@ -30,15 +30,19 @@ import java.util.BitSet;
 import java.util.Random;
 
 public class BlockConiferLeaves extends BlockLeaves {
-	private Block sapling;
+	private Item sapling;
 
-	public BlockConiferLeaves(Block sapling) {
+	public BlockConiferLeaves() {
 		super();
 
 		this.sapling = sapling;
 		this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, true).withProperty(DECAYABLE, true));
 
 		this.setLightOpacity(RedwoodsConfig.leavesDiffuseSkylight ? 1 : 0);
+	}
+
+	public void setSapling(Item sapling) {
+		this.sapling = sapling;
 	}
 
 	@Override
@@ -100,7 +104,7 @@ public class BlockConiferLeaves extends BlockLeaves {
 
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		return Item.getItemFromBlock(sapling);
+		return sapling;
 	}
 
 	@Override
