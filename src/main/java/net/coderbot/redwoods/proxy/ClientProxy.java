@@ -38,6 +38,9 @@ public class ClientProxy extends CommonProxy {
 
 		registerModel(ModItems.REDWOOD_SLAB);
 		registerModel(ModItems.FIR_SLAB);
+
+		registerModel(ModItems.REDWOOD_STAIRS);
+		registerModel(ModItems.FIR_STAIRS);
 	}
 
 	@SubscribeEvent

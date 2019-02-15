@@ -1,4 +1,5 @@
-redwoods.config.title = Redwoods Config
+redwoods.config.title=Redwoods Config
+itemGroup.redwoods=Redwoods
 
 tile.redwoods.redwood_log.name=Redwood Log
 tile.redwoods.fir_log.name=Fir Log
@@ -10,3 +11,12 @@ tile.redwoods.fir_sapling.name=Fir Sapling
 
 tile.redwoods.redwood_leaves.name=Redwood Leaves
 tile.redwoods.fir_leaves.name=Fir Leaves
+
+tile.redwoods.redwood_planks.name=Redwood Planks
+tile.redwoods.fir_planks.name=Fir Wood Planks
+
+tile.redwoods.redwood_slab.name=Redwood Slab
+tile.redwoods.fir_slab.name=Fir Wood Slab
+
+tile.redwoods.redwood_stairs.name=Redwood Stairs
+tile.redwoods.fir_stairs.name=Fir Wood Stairs

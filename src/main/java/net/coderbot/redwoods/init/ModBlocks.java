@@ -4,6 +4,8 @@ import net.coderbot.redwoods.Redwoods;
 import net.coderbot.redwoods.block.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
+import net.minecraft.block.BlockSlab;
+import net.minecraft.block.BlockStairs;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
@@ -34,11 +36,11 @@ public class ModBlocks {
 	public static Block REDWOOD_PLANKS;
 	public static Block FIR_PLANKS;
 
-	public static Block REDWOOD_SLAB;
-	public static Block FIR_SLAB;
+	public static BlockSlab REDWOOD_SLAB;
+	public static BlockSlab FIR_SLAB;
 
-	public static Block REDWOOD_DOUBLE_SLAB;
-	public static Block FIR_DOUBLE_SLAB;
+	public static BlockSlab REDWOOD_DOUBLE_SLAB;
+	public static BlockSlab FIR_DOUBLE_SLAB;
 
 	public static Block REDWOOD_STAIRS;
 	public static Block FIR_STAIRS;
@@ -91,6 +93,9 @@ public class ModBlocks {
 		REDWOOD_DOUBLE_SLAB = register(event, new BlockConiferDoubleSlab(), "redwood_double_slab");
 		FIR_DOUBLE_SLAB = register(event, new BlockConiferDoubleSlab(), "fir_double_slab");
 
+		REDWOOD_STAIRS = register(event, new BlockConiferStairs(REDWOOD_PLANKS), "redwood_stairs");
+		FIR_STAIRS = register(event, new BlockConiferStairs(FIR_PLANKS), "fir_stairs");
+
 		// Burn the blocks!
 		registerFlammables();
 	}
@@ -112,6 +117,9 @@ public class ModBlocks {
 
 		Blocks.FIRE.setFireInfo(REDWOOD_DOUBLE_SLAB, 5, 20);
 		Blocks.FIRE.setFireInfo(FIR_DOUBLE_SLAB, 5, 20);
+
+		Blocks.FIRE.setFireInfo(REDWOOD_STAIRS, 5, 20);
+		Blocks.FIRE.setFireInfo(FIR_STAIRS, 5, 20);
 	}
 
 	@SubscribeEvent
@@ -128,6 +136,17 @@ public class ModBlocks {
 	private static Block register(RegistryEvent.Register<Block> event, Block block, String name) {
 		block.setRegistryName(new ResourceLocation(Redwoods.MODID, name));
 		block.setUnlocalizedName(Redwoods.MODID + "." + name);
+		block.setCreativeTab(Redwoods.TAB);
+
+		event.getRegistry().register(block);
+
+		return block;
+	}
+
+	private static BlockSlab register(RegistryEvent.Register<Block> event, BlockSlab block, String name) {
+		block.setRegistryName(new ResourceLocation(Redwoods.MODID, name));
+		block.setUnlocalizedName(Redwoods.MODID + "." + name);
+		block.setCreativeTab(Redwoods.TAB);
 
 		event.getRegistry().register(block);
 

@@ -23,6 +23,8 @@ public class BlockConiferSlab extends BlockSlab {
 		setSoundType(SoundType.WOOD);
 		setHardness(2.0F);
 		setResistance(5.0F);
+
+		useNeighborBrightness = true;
 	}
 
 	@Override
