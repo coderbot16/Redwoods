@@ -103,3 +103,6 @@ More can be found in [LICENSE-TEXTURES](LICENSE-TEXTURES.md).
 
 #### House constructed from Redwoods blocks
 ![Demo House](showcase/Demo%20House.png)
+
+#### The same house, from the other side
+![Demo House](showcase/Demo%20House%20Doors.png)
