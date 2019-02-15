@@ -100,3 +100,6 @@ More can be found in [LICENSE-TEXTURES](LICENSE-TEXTURES.md).
 #### Beach of a Lush Redwood Forest
 ![Lush Redwood Forest Beach](showcase/Lush%20Redwood%20Forest%20Beach.png)
 *Seed: -7966525194701114253 XYZ: 11463/87/-135*
+
+#### House constructed from Redwoods blocks
+![Demo House](showcase/Demo%20House.png)
