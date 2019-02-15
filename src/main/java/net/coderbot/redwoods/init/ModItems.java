@@ -9,6 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.oredict.OreDictionary;
 
 @Mod.EventBusSubscriber
 public class ModItems {
@@ -67,6 +68,18 @@ public class ModItems {
 		FIR_FENCE_GATE = register(event, ModBlocks.FIR_FENCE_GATE);
 	}
 
+	public static void registerOreDict() {
+		registerOre("logWood", REDWOOD_LOG, FIR_LOG, REDWOOD_LOG_QUARTER, FIR_LOG_QUARTER);
+		registerOre("treeSapling", REDWOOD_SAPLING, FIR_SAPLING);
+		registerOre("treeLeaves", REDWOOD_LEAVES, FIR_LEAVES);
+		registerOre("plankWood", REDWOOD_PLANKS, FIR_PLANKS);
+		registerOre("slabWood", REDWOOD_SLAB, FIR_SLAB);
+		registerOre("stairWood", REDWOOD_STAIRS, FIR_STAIRS);
+		registerOre("fenceWood", REDWOOD_FENCE, FIR_FENCE);
+		registerOre("fenceGateWood", REDWOOD_FENCE_GATE, FIR_FENCE_GATE);
+		// TODO: doorWood
+	}
+
 	private static Item register(RegistryEvent.Register<Item> event, Block block) {
 		ResourceLocation name = block.getRegistryName();
 
@@ -92,5 +105,11 @@ public class ModItems {
 		event.getRegistry().register(item);
 
 		return item;
+	}
+
+	private static void registerOre(String name, Item... items) {
+		for(Item item: items) {
+			OreDictionary.registerOre(name, item);
+		}
 	}
 }

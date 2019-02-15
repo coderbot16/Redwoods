@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"P  ",
+		"PP ",
+		"PPP"
+	],
+	"key": {
+		"P": {
+			"item": "redwoods:redwood_planks"
+		}
+	},
+	"result": {
+		"item": "redwoods:redwood_stairs",
+		"count": 4
+	}
+}

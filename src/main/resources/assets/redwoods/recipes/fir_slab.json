@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"PPP"
+	],
+	"key": {
+		"P": {
+			"item": "redwoods:fir_planks"
+		}
+	},
+	"result": {
+		"item": "redwoods:fir_slab",
+		"data": 0,
+		"count": 6
+	}
+}
