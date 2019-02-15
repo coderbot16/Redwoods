@@ -52,6 +52,7 @@ public class ModBiomes {
 				BiomeDictionary.Type.LUSH
 		);
 		BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(REDWOOD_FOREST, 8));
+		BiomeManager.addSpawnBiome(REDWOOD_FOREST);
 
 		// Lush Redwood Forest
 		LUSH_REDWOOD_FOREST_PROPS = new BiomeConiferous.Properties("Lush Redwood Forest");
@@ -77,6 +78,7 @@ public class ModBiomes {
 				BiomeDictionary.Type.LUSH
 		);
 		BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(LUSH_REDWOOD_FOREST, 8));
+		BiomeManager.addSpawnBiome(LUSH_REDWOOD_FOREST);
 
 		// Temperate Rainforest
 		TEMPERATE_RAINFOREST_PROPS = new BiomeConiferous.Properties("Temperate Rainforest");
@@ -100,6 +102,7 @@ public class ModBiomes {
 				BiomeDictionary.Type.LUSH
 		);
 		BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(TEMPERATE_RAINFOREST, 10));
+		BiomeManager.addSpawnBiome(TEMPERATE_RAINFOREST);
 
 		// Snowy Rainforest
 		SNOWY_RAINFOREST_PROPS = new BiomeConiferous.Properties("Snowy Rainforest");
