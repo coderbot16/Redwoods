@@ -76,6 +76,9 @@ public class ModItems {
 
 		ModBlocks.REDWOOD_LEAVES.setSapling(REDWOOD_SAPLING);
 		ModBlocks.FIR_LEAVES.setSapling(FIR_SAPLING);
+
+		ModBlocks.REDWOOD_DOOR.setItem(REDWOOD_DOOR);
+		ModBlocks.FIR_DOOR.setItem(FIR_DOOR);
 	}
 
 	public static void registerOreDict() {

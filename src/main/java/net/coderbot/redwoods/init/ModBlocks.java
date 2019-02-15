@@ -50,8 +50,8 @@ public class ModBlocks {
 	public static BlockFenceGate REDWOOD_FENCE_GATE;
 	public static BlockFenceGate FIR_FENCE_GATE;
 
-	public static Block REDWOOD_DOOR;
-	public static Block FIR_DOOR;
+	public static BlockConiferDoor REDWOOD_DOOR;
+	public static BlockConiferDoor FIR_DOOR;
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
