@@ -2,14 +2,14 @@
 {
   "modid": "redwoods",
   "name": "Redwoods",
-  "description": "Adds redwood and fir trees, with corresponding biomes.",
+  "description": "Adds redwood and fir trees, with corresponding biomes and blocks.",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
+  "url": "https://github.com/coderbot16/Redwoods",
   "updateUrl": "",
   "authorList": ["coderbot16"],
-  "credits": "Biomes and generation inspired by ExtrabiomesXL, Textures used from ExtrabiomesXL (CC BY-SA 3.0)",
-  "logoFile": "",
+  "credits": "Biomes and generation inspired by ExtrabiomesXL, Textures used and modified from ExtrabiomesXL (CC BY-SA 3.0)",
+  "logoFile": "assets/redwoods/textures/logo.png",
   "screenshots": [],
   "dependencies": []
 }
