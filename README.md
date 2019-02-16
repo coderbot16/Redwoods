@@ -5,11 +5,11 @@
 
 ## Introduction
 
-Redwoods is a mod for Minecraft that adds several biomes and tree types to the game themed around massive, trees. Have
-you wanted to traverse a massive forest of conifer trees, totally in awe at the beauty of your landscape? Then Redwoods 
-is the mod for you.
+Redwoods is a mod for Minecraft that adds several biomes and tree types to the game themed around massive towering trees.
+Have you wanted to traverse a massive forest of conifer trees, totally in awe at the beauty of your landscape? Then 
+Redwoods is the mod for you.
 
-Redwoods, despite the name, adds both redwood and fir trees to the game. This mod is intended to be used alongside the
+Redwoods, despite the name, adds both redwood and fir trees to the game. This mod is intended to be used alongside
 Traverse, as a way to replace their Coniferous Forest biomes with ones that are closer to classic ExtrabiomesXL. Traverse
 does an amazing job on all its biomes, but in my opinion it just feels like that truly massive trees are missing. Thus,
 I made this mod to act as a companion mod for Traverse. While Traverse is not required, it is highly recommended!
