@@ -73,26 +73,7 @@ public class BlockQuarterLog extends BlockLog {
 	}
 
 	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-		boolean hitEast;
-		boolean hitSouth;
-
-		switch(facing.getAxis()) {
-			case Y:
-				hitEast = hitX >= 0.5;
-				hitSouth = hitZ >= 0.5;
-				break;
-			case X:
-				hitEast = hitY <= 0.5;
-				hitSouth = hitZ >= 0.5;
-				break;
-			default:
-				hitEast = hitX >= 0.5;
-				hitSouth = hitY >= 0.5;
-				break;
-		}
-
-		// Logic of placement: The quadrant the player clicks on should be the one farthest from the bark sides.
-		BarkSide side = BarkSide.fromHalves(!hitEast, !hitSouth);
+		BarkSide side = BarkSide.fromHit(EnumAxis.fromFacingAxis(facing.getAxis()), hitX, hitY, hitZ);
 
 		return super.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(BARK_SIDE, side);
 	}
@@ -107,6 +88,29 @@ public class BlockQuarterLog extends BlockLog {
 
 		BarkSide(String name) {
 			this.name = name;
+		}
+
+		public static BarkSide fromHit(EnumAxis axis, float hitX, float hitY, float hitZ) {
+			boolean hitEast;
+			boolean hitSouth;
+
+			switch(axis) {
+				case Y:
+					hitEast = hitX >= 0.5;
+					hitSouth = hitZ >= 0.5;
+					break;
+				case X:
+					hitEast = hitY <= 0.5;
+					hitSouth = hitZ >= 0.5;
+					break;
+				default:
+					hitEast = hitX >= 0.5;
+					hitSouth = hitY >= 0.5;
+					break;
+			}
+
+			// Logic of placement: The quadrant the player clicks on should be the one farthest from the bark sides.
+			return BarkSide.fromHalves(!hitEast, !hitSouth);
 		}
 
 		public static BarkSide fromHalves(boolean east, boolean south) {

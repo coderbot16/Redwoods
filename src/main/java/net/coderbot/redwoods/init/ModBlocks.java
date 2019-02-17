@@ -61,6 +61,9 @@ public class ModBlocks {
 		REDWOOD_LOG_QUARTER = register(event, new BlockQuarterLog(), "redwood_log_quarter");
 		FIR_LOG_QUARTER = register(event, new BlockQuarterLog(), "fir_log_quarter");
 
+		REDWOOD_LOG.setQuarter(REDWOOD_LOG_QUARTER);
+		FIR_LOG.setQuarter(FIR_LOG_QUARTER);
+
 		REDWOOD_LEAVES = register(event, new BlockConiferLeaves(), "redwood_leaves");
 		FIR_LEAVES = register(event, new BlockConiferLeaves(), "fir_leaves");
 

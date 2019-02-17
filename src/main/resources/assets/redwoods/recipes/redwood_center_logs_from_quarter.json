@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+	  "PP",
+	  "PP"
+    ],
+    "key": {
+	  "P": {
+  	    "item": "redwoods:redwood_log_quarter"
+	  }
+    },
+	"result": {
+		"item": "redwoods:redwood_log",
+		"count": 3
+	}
+}
