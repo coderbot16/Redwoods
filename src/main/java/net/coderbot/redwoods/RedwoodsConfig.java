@@ -20,6 +20,39 @@ public class RedwoodsConfig {
 	                "default to avoid lag from lighting updates and mob spawns.")
 	public static boolean leavesDiffuseSkylight = false;
 
+	@Config.Comment("The configuration for the biomes. Changing these will have no effect without a restart!")
+	public static final BiomesConfiguration biomes = new BiomesConfiguration();
+
+	public static class BiomesConfiguration {
+		@Config.Comment("Settings for the Redwood Forest biome")
+		public BiomeConfig redwoodForest = new BiomeConfig(8, true);
+
+		@Config.Comment("Settings for the Lush Redwood Forest biome")
+		public BiomeConfig lushRedwoodForest = new BiomeConfig(8, true);
+
+		@Config.Comment("Settings for the Temperate Rainforest biome")
+		public BiomeConfig temperateRainforest = new BiomeConfig(10, true);
+
+		@Config.Comment("Settings for the Snowy Rainforest biome")
+		public BiomeConfig snowyRainforest = new BiomeConfig(10, true);
+
+		@Config.Comment("Settings for the Alpine biome")
+		public BiomeConfig alpine = new BiomeConfig(0, false);
+
+		public static class BiomeConfig {
+			@Config.Comment("The weight of this biome in the biome generation list, 0 to disable generation")
+			public int weight = 10;
+
+			@Config.Comment("Whether this biome will be registered at all. This will break existing worlds if changed!")
+			public boolean register = true;
+
+			public BiomeConfig(int weight, boolean register) {
+				this.weight = weight;
+				this.register = register;
+			}
+		}
+	}
+
 	@Mod.EventBusSubscriber(modid = Redwoods.MODID)
 	private static class EventHandler {
 
