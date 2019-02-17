@@ -37,7 +37,7 @@ public class RedwoodsConfig {
 		public BiomeConfig snowyRainforest = new BiomeConfig(10, true);
 
 		@Config.Comment("Settings for the Alpine biome")
-		public BiomeConfig alpine = new BiomeConfig(0, false);
+		public BiomeConfig alpine = new BiomeConfig(0, true);
 
 		public static class BiomeConfig {
 			@Config.Comment("The weight of this biome in the biome generation list, 0 to disable generation")

@@ -76,7 +76,7 @@ public class BiomeConiferous extends Biome {
 			biomeProperties = new BiomeProperties(name);
 		}
 
-		private WorldGenAbstractTree[] getTrees() {
+		WorldGenAbstractTree[] getTrees() {
 			int enabled = 0;
 
 			if(redwoodNormal) {

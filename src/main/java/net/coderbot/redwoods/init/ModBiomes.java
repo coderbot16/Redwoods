@@ -2,6 +2,7 @@ package net.coderbot.redwoods.init;
 
 import net.coderbot.redwoods.Redwoods;
 import net.coderbot.redwoods.RedwoodsConfig;
+import net.coderbot.redwoods.biomes.BiomeAlpine;
 import net.coderbot.redwoods.biomes.BiomeConiferous;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
@@ -29,6 +30,10 @@ public class ModBiomes {
 	// Normal Firs + Mega Firs + Snow
 	public static BiomeConiferous SNOWY_RAINFOREST;
 	public static BiomeConiferous.Properties SNOWY_RAINFOREST_PROPS;
+
+	// Sparse Normal Firs + Sparse Normal Redwoods + Snow + Basin
+	public static BiomeAlpine ALPINE;
+	public static BiomeConiferous.Properties ALPINE_PROPS;
 
 	@SubscribeEvent
 	public static void registerBiomes(RegistryEvent.Register<Biome> event) {
@@ -143,7 +148,7 @@ public class ModBiomes {
 			SNOWY_RAINFOREST = registerConiferBiome(event, "snowy_rainforest", SNOWY_RAINFOREST_PROPS);
 			BiomeDictionary.addTypes(SNOWY_RAINFOREST,
 					BiomeDictionary.Type.DENSE,
-					BiomeDictionary.Type.WET,
+					BiomeDictionary.Type.SNOWY,
 					BiomeDictionary.Type.FOREST,
 					BiomeDictionary.Type.CONIFEROUS,
 					BiomeDictionary.Type.HILLS,
@@ -156,10 +161,46 @@ public class ModBiomes {
 				BiomeManager.addBiome(BiomeManager.BiomeType.ICY, new BiomeManager.BiomeEntry(SNOWY_RAINFOREST, weight));
 			}
 		}
+
+		if(RedwoodsConfig.biomes.alpine.register) {
+			// Alpine
+			ALPINE_PROPS = new BiomeConiferous.Properties("Alpine");
+			ALPINE_PROPS.biomeProperties
+					.setTemperature(0.0F)
+					.setRainfall(0.1F)
+					.setBaseHeight(1.7F)
+					.setHeightVariation(0.4F)
+					.setSnowEnabled();
+			ALPINE_PROPS.redwoodNormal = true;
+			ALPINE_PROPS.firNormal = true;
+			ALPINE_PROPS.flowerCount = 4;
+			ALPINE_PROPS.treesPerChunk = 1;
+			ALPINE = registerAlpineBiome(event, "alpine", ALPINE_PROPS);
+			BiomeDictionary.addTypes(ALPINE,
+					BiomeDictionary.Type.SNOWY,
+					BiomeDictionary.Type.CONIFEROUS,
+					BiomeDictionary.Type.MOUNTAIN
+			);
+
+			int weight = RedwoodsConfig.biomes.alpine.weight;
+
+			if(weight > 0) {
+				BiomeManager.addBiome(BiomeManager.BiomeType.ICY, new BiomeManager.BiomeEntry(ALPINE, weight));
+			}
+		}
 	}
 
 	private static BiomeConiferous registerConiferBiome(RegistryEvent.Register<Biome> event, String name, BiomeConiferous.Properties properties) {
 		BiomeConiferous biome = new BiomeConiferous(properties);
+		biome.setRegistryName(Redwoods.MODID, name);
+
+		event.getRegistry().register(biome);
+
+		return biome;
+	}
+
+	private static BiomeAlpine registerAlpineBiome(RegistryEvent.Register<Biome> event, String name, BiomeConiferous.Properties properties) {
+		BiomeAlpine biome = new BiomeAlpine(properties);
 		biome.setRegistryName(Redwoods.MODID, name);
 
 		event.getRegistry().register(biome);
