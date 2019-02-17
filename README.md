@@ -101,6 +101,11 @@ More can be found in [LICENSE-TEXTURES](LICENSE-TEXTURES.md).
 ![Lush Redwood Forest Beach](showcase/Lush%20Redwood%20Forest%20Beach.png)
 *Seed: -7966525194701114253 XYZ: 11463/87/-135*
 
+#### Outside of an Alpine biome
+Note: Disabled by default since it doesn't look as good as the other 4 biomes
+![Alpine](showcase/Alpine.png)
+*Seed: 4886386781528051040 XYZ: 1030/87/770*
+
 #### House constructed from Redwoods blocks
 ![Demo House](showcase/Demo%20House.png)
 
