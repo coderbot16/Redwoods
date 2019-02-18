@@ -25,30 +25,38 @@ public class RedwoodsConfig {
 
 	public static class BiomesConfiguration {
 		@Config.Comment("Settings for the Redwood Forest biome")
-		public BiomeConfig redwoodForest = new BiomeConfig(8, true);
+		public BiomeConfig redwoodForest = new BiomeConfig(8, true, 1, 100);
 
 		@Config.Comment("Settings for the Lush Redwood Forest biome")
-		public BiomeConfig lushRedwoodForest = new BiomeConfig(8, true);
+		public BiomeConfig lushRedwoodForest = new BiomeConfig(8, true, 1, 100);
 
 		@Config.Comment("Settings for the Temperate Rainforest biome")
-		public BiomeConfig temperateRainforest = new BiomeConfig(10, true);
+		public BiomeConfig temperateRainforest = new BiomeConfig(10, true, 16, 75);
 
 		@Config.Comment("Settings for the Snowy Rainforest biome")
-		public BiomeConfig snowyRainforest = new BiomeConfig(10, true);
+		public BiomeConfig snowyRainforest = new BiomeConfig(10, true, 16, 75);
 
 		@Config.Comment("Settings for the Alpine biome")
-		public BiomeConfig alpine = new BiomeConfig(0, true);
+		public BiomeConfig alpine = new BiomeConfig(0, true, 0, 0);
 
 		public static class BiomeConfig {
 			@Config.Comment("The weight of this biome in the biome generation list, 0 to disable generation")
-			public int weight = 10;
+			public int weight;
 
 			@Config.Comment("Whether this biome will be registered at all. This will break existing worlds if changed!")
-			public boolean register = true;
+			public boolean register ;
 
-			public BiomeConfig(int weight, boolean register) {
+			@Config.Comment("How many clusters of tall grass will be spawned")
+			public int grassCount;
+
+			@Config.Comment("The percentage of tall grass clusters that will be made of ferns")
+			public int fernPercentage;
+
+			public BiomeConfig(int weight, boolean register, int grassCount, int fernPercentage) {
 				this.weight = weight;
 				this.register = register;
+				this.grassCount = grassCount;
+				this.fernPercentage = fernPercentage;
 			}
 		}
 	}

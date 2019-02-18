@@ -46,8 +46,8 @@ public class ModBiomes {
 					.setBaseHeight(1.2F)
 					.setHeightVariation(0.3F);
 			REDWOOD_FOREST_PROPS.redwoodMega = true;
-			REDWOOD_FOREST_PROPS.fernPercentage = 100;
-			REDWOOD_FOREST_PROPS.grassCount = 1;
+			REDWOOD_FOREST_PROPS.fernPercentage = RedwoodsConfig.biomes.redwoodForest.fernPercentage;
+			REDWOOD_FOREST_PROPS.grassCount = RedwoodsConfig.biomes.redwoodForest.grassCount;
 			REDWOOD_FOREST = registerConiferBiome(event, "redwood_forest", REDWOOD_FOREST_PROPS);
 			BiomeDictionary.addTypes(REDWOOD_FOREST,
 					BiomeDictionary.Type.HOT,
@@ -77,8 +77,8 @@ public class ModBiomes {
 					.setHeightVariation(0.3F);
 			LUSH_REDWOOD_FOREST_PROPS.redwoodMega = true;
 			LUSH_REDWOOD_FOREST_PROPS.firNormal = true;
-			LUSH_REDWOOD_FOREST_PROPS.fernPercentage = 100;
-			LUSH_REDWOOD_FOREST_PROPS.grassCount = 1;
+			LUSH_REDWOOD_FOREST_PROPS.fernPercentage = RedwoodsConfig.biomes.lushRedwoodForest.fernPercentage;
+			LUSH_REDWOOD_FOREST_PROPS.grassCount = RedwoodsConfig.biomes.lushRedwoodForest.grassCount;
 			LUSH_REDWOOD_FOREST_PROPS.flowerCount = 1;
 			LUSH_REDWOOD_FOREST_PROPS.treesPerChunk = 8;
 			LUSH_REDWOOD_FOREST = registerConiferBiome(event, "lush_redwood_forest", LUSH_REDWOOD_FOREST_PROPS);
@@ -110,8 +110,8 @@ public class ModBiomes {
 					.setHeightVariation(0.55F);
 			TEMPERATE_RAINFOREST_PROPS.firMega = true;
 			TEMPERATE_RAINFOREST_PROPS.firNormal = true;
-			TEMPERATE_RAINFOREST_PROPS.fernPercentage = 75;
-			TEMPERATE_RAINFOREST_PROPS.grassCount = 16;
+			TEMPERATE_RAINFOREST_PROPS.fernPercentage = RedwoodsConfig.biomes.temperateRainforest.fernPercentage;
+			TEMPERATE_RAINFOREST_PROPS.grassCount = RedwoodsConfig.biomes.temperateRainforest.grassCount;
 			TEMPERATE_RAINFOREST_PROPS.treesPerChunk = 17;
 			TEMPERATE_RAINFOREST = registerConiferBiome(event, "temperate_rainforest", TEMPERATE_RAINFOREST_PROPS);
 			BiomeDictionary.addTypes(TEMPERATE_RAINFOREST,
@@ -142,8 +142,8 @@ public class ModBiomes {
 					.setSnowEnabled();
 			SNOWY_RAINFOREST_PROPS.firMega = true;
 			SNOWY_RAINFOREST_PROPS.firNormal = true;
-			SNOWY_RAINFOREST_PROPS.fernPercentage = 75;
-			SNOWY_RAINFOREST_PROPS.grassCount = 16;
+			SNOWY_RAINFOREST_PROPS.fernPercentage = RedwoodsConfig.biomes.snowyRainforest.fernPercentage;
+			SNOWY_RAINFOREST_PROPS.grassCount = RedwoodsConfig.biomes.snowyRainforest.grassCount;
 			SNOWY_RAINFOREST_PROPS.treesPerChunk = 17;
 			SNOWY_RAINFOREST = registerConiferBiome(event, "snowy_rainforest", SNOWY_RAINFOREST_PROPS);
 			BiomeDictionary.addTypes(SNOWY_RAINFOREST,
@@ -173,6 +173,8 @@ public class ModBiomes {
 					.setSnowEnabled();
 			ALPINE_PROPS.redwoodNormal = true;
 			ALPINE_PROPS.firNormal = true;
+			ALPINE_PROPS.fernPercentage = RedwoodsConfig.biomes.alpine.fernPercentage;
+			ALPINE_PROPS.grassCount = RedwoodsConfig.biomes.alpine.grassCount;
 			ALPINE_PROPS.flowerCount = 4;
 			ALPINE_PROPS.treesPerChunk = 1;
 			ALPINE = registerAlpineBiome(event, "alpine", ALPINE_PROPS);
