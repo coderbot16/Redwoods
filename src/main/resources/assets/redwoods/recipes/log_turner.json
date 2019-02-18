@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"SS",
+		" S",
+		"SS"
+	],
+	"key": {
+		"S": {
+		  	"type": "forge:ore_dict",
+			"ore": "stickWood"
+		}
+	},
+	"result": {
+		"item": "redwoods:log_turner",
+		"count": 1
+	}
+}

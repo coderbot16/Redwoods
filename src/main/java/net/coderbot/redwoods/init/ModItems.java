@@ -1,6 +1,7 @@
 package net.coderbot.redwoods.init;
 
 import net.coderbot.redwoods.Redwoods;
+import net.coderbot.redwoods.item.ItemLogTurner;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -43,6 +44,8 @@ public class ModItems {
 	public static Item REDWOOD_DOOR;
 	public static Item FIR_DOOR;
 
+	public static Item LOG_TURNER;
+
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 		REDWOOD_LOG = register(event, ModBlocks.REDWOOD_LOG);
@@ -73,6 +76,8 @@ public class ModItems {
 
 		REDWOOD_DOOR = register(event, new ItemDoor(ModBlocks.REDWOOD_DOOR), "redwood_door");
 		FIR_DOOR = register(event, new ItemDoor(ModBlocks.FIR_DOOR), "fir_door");
+
+		LOG_TURNER = register(event, new ItemLogTurner(), "log_turner");
 
 		ModBlocks.REDWOOD_LEAVES.setSapling(REDWOOD_SAPLING);
 		ModBlocks.FIR_LEAVES.setSapling(FIR_SAPLING);

@@ -56,6 +56,8 @@ public class ClientProxy extends CommonProxy {
 
 		registerModel(ModItems.REDWOOD_DOOR);
 		registerModel(ModItems.FIR_DOOR);
+
+		registerModel(ModItems.LOG_TURNER);
 	}
 
 	@SubscribeEvent
