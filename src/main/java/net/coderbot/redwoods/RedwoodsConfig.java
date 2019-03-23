@@ -16,6 +16,10 @@ public class RedwoodsConfig {
 	                "This makes leaves appear much more hollow, but looks better than Fast graphics and runs almost as well.")
 	public static boolean useOptiLeaves = true;
 
+	@Config.Comment("Culls leaf faces that are against opaque blocks, should be relatively safe and can net up to " +
+	                "10 extra frames per second!")
+	public static boolean opaqueFaceLeafCulling = true;
+
 	@Config.Comment("Whether leaves will have a nonzero light opacity, like vanilla leaves. They have no opacity by" +
 	                "default to avoid lag from lighting updates and mob spawns.")
 	public static boolean leavesDiffuseSkylight = false;

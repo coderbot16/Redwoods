@@ -141,6 +141,14 @@ public class BlockConiferLeaves extends BlockLeaves {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+		if(RedwoodsConfig.opaqueFaceLeafCulling) {
+			IBlockState state = blockAccess.getBlockState(pos.offset(side));
+
+			if(state.isOpaqueCube() || state.doesSideBlockRendering(blockAccess, pos, side)) {
+				return false;
+			}
+		}
+
 		if (!Minecraft.getMinecraft().gameSettings.fancyGraphics || RedwoodsConfig.useOptiLeaves) {
 			return !(blockAccess.getBlockState(pos.offset(side)).getBlock() instanceof BlockConiferLeaves);
 		} else {
