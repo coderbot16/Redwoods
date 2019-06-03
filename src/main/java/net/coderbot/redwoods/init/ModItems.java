@@ -1,7 +1,7 @@
 package net.coderbot.redwoods.init;
 
 import net.coderbot.redwoods.Redwoods;
-import net.coderbot.redwoods.item.ItemLogTurner;
+import net.coderbot.redwoods.item.LogTurnerItem;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -70,7 +70,7 @@ public class ModItems {
 		REDWOOD_DOOR = Registry.register(Registry.ITEM, "redwoods:redwood_door", new TallBlockItem(ModBlocks.REDWOOD_DOOR, new Item.Settings().itemGroup(Redwoods.ITEM_GROUP)));
 		FIR_DOOR = Registry.register(Registry.ITEM, "redwoods:fir_door", new TallBlockItem(ModBlocks.FIR_DOOR, new Item.Settings().itemGroup(Redwoods.ITEM_GROUP)));
 
-		LOG_TURNER = Registry.register(Registry.ITEM, "redwoods:log_turner", new ItemLogTurner(new Item.Settings().itemGroup(Redwoods.ITEM_GROUP)));
+		LOG_TURNER = Registry.register(Registry.ITEM, "redwoods:log_turner", new LogTurnerItem(new Item.Settings().itemGroup(Redwoods.ITEM_GROUP)));
 	}
 
 	// TODO

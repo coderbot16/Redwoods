@@ -14,14 +14,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class BlockCenterLog extends LogBlock {
-	private BlockQuarterLog quarter;
+public class CenterLogBlock extends LogBlock {
+	private QuarterLogBlock quarter;
 
-	public BlockCenterLog(Settings settings) {
+	public CenterLogBlock(Settings settings) {
 		super(MaterialColor.SPRUCE, settings);
 	}
 
-	public void setQuarter(BlockQuarterLog quarter) {
+	public void setQuarter(QuarterLogBlock quarter) {
 		this.quarter = quarter;
 	}
 
@@ -59,10 +59,10 @@ public class BlockCenterLog extends LogBlock {
 		float hitY = (float)(pos.getY() - blockPos.getY());
 		float hitZ = (float)(pos.getZ() - blockPos.getZ());
 
-		BlockQuarterLog.BarkSide side = BlockQuarterLog.BarkSide.fromHit(existing.get(AXIS), hitX, hitY, hitZ);
+		QuarterLogBlock.BarkSide side = QuarterLogBlock.BarkSide.fromHit(existing.get(AXIS), hitX, hitY, hitZ);
 
 		return quarter.getDefaultState()
-				.with(BlockQuarterLog.BARK_SIDE, side)
+				.with(QuarterLogBlock.BARK_SIDE, side)
 				.with(AXIS, existing.get(AXIS));
 	}
 }

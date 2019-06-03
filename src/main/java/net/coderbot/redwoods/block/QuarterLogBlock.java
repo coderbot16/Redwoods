@@ -12,10 +12,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 
-public class BlockQuarterLog extends LogBlock {
+public class QuarterLogBlock extends LogBlock {
 	public static final EnumProperty<BarkSide> BARK_SIDE = EnumProperty.create("bark_side", BarkSide.class);
 
-	public BlockQuarterLog(Block.Settings settings) {
+	public QuarterLogBlock(Block.Settings settings) {
 		super(MaterialColor.BROWN, settings);
 	}
 

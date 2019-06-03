@@ -1,6 +1,6 @@
 package net.coderbot.redwoods.item;
 
-import net.coderbot.redwoods.block.BlockQuarterLog;
+import net.coderbot.redwoods.block.QuarterLogBlock;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
@@ -18,8 +18,8 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class ItemLogTurner extends Item {
-	public ItemLogTurner(Item.Settings settings) {
+public class LogTurnerItem extends Item {
+	public LogTurnerItem(Item.Settings settings) {
 		super(settings);
 	}
 
@@ -36,18 +36,18 @@ public class ItemLogTurner extends Item {
 		Direction.Axis currentAxis = state.get(PillarBlock.AXIS);
 
 		if(context.getPlayer() != null && context.getPlayer().isSneaking()) {
-			if(state.getBlock() instanceof BlockQuarterLog) {
-				BlockQuarterLog.BarkSide cycled = cycleBarkSide(state.get(BlockQuarterLog.BARK_SIDE));
+			if(state.getBlock() instanceof QuarterLogBlock) {
+				QuarterLogBlock.BarkSide cycled = cycleBarkSide(state.get(QuarterLogBlock.BARK_SIDE));
 				Direction.Axis newAxis = currentAxis;
 
 				// First cycle the bark side. If we return to the start, then cycle the axis too.
-				if(cycled == BlockQuarterLog.BarkSide.SOUTHWEST) {
+				if(cycled == QuarterLogBlock.BarkSide.SOUTHWEST) {
 					newAxis = cycleAxis(currentAxis);
 				}
 
 				world.setBlockState(pos, state
 						.with(PillarBlock.AXIS, newAxis)
-						.with(BlockQuarterLog.BARK_SIDE, cycled)
+						.with(QuarterLogBlock.BARK_SIDE, cycled)
 				);
 
 				return ActionResult.SUCCESS;
@@ -66,8 +66,8 @@ public class ItemLogTurner extends Item {
 			}
 		}
 
-		if(state.getBlock() instanceof BlockQuarterLog) {
-			world.setBlockState(pos, state.cycle(BlockQuarterLog.BARK_SIDE));
+		if(state.getBlock() instanceof QuarterLogBlock) {
+			world.setBlockState(pos, state.cycle(QuarterLogBlock.BARK_SIDE));
 
 			return ActionResult.SUCCESS;
 		} else {
@@ -83,12 +83,12 @@ public class ItemLogTurner extends Item {
 		}
 	}
 
-	private static BlockQuarterLog.BarkSide cycleBarkSide(BlockQuarterLog.BarkSide side) {
+	private static QuarterLogBlock.BarkSide cycleBarkSide(QuarterLogBlock.BarkSide side) {
 		switch (side) {
-			case SOUTHWEST: return BlockQuarterLog.BarkSide.NORTHWEST;
-			case NORTHWEST: return BlockQuarterLog.BarkSide.NORTHEAST;
-			case NORTHEAST: return BlockQuarterLog.BarkSide.SOUTHEAST;
-			default: return BlockQuarterLog.BarkSide.SOUTHWEST;
+			case SOUTHWEST: return QuarterLogBlock.BarkSide.NORTHWEST;
+			case NORTHWEST: return QuarterLogBlock.BarkSide.NORTHEAST;
+			case NORTHEAST: return QuarterLogBlock.BarkSide.SOUTHEAST;
+			default: return QuarterLogBlock.BarkSide.SOUTHWEST;
 		}
 	}
 
