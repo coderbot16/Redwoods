@@ -2,7 +2,7 @@
 	"type": "minecraft:crafting_shapeless",
 	"ingredients": [
 		{
-			"item": "redwoods:fir_log"
+		  "tag": "redwoods:fir_logs"
 		}
 	],
 	"result": {
