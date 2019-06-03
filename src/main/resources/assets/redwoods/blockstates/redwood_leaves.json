@@ -1,7 +1,7 @@
 {
   "variants": {
 	"normal": {
-	  "model": "redwoods:redwood_leaves"
+	  "model": "redwoods:block/redwood_leaves"
 	}
   }
 }

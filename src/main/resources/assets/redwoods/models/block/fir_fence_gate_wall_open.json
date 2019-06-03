@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/wall_gate_closed",
+  "parent": "minecraft:block/template_fence_gate_wall_open",
   "textures": {
 	"texture": "redwoods:blocks/planks_fir"
   }

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "redwoods",
+  "version": "2.0.0",
+
+  "name": "Redwoods",
+  "description": "Adds redwood and fir trees, with corresponding biomes and blocks.",
+  "authors": [
+	"coderbot16"
+  ],
+  "contact": {
+	"homepage": "https://minecraft.curseforge.com/projects/redwoods",
+	"issues": "https://github.com/coderbot16/Redwoods/issues",
+	"sources": "https://github.com/coderbot16/Redwoods"
+  },
+
+  "license": "MIT, CC-BY-SA-3.0",
+  "icon": "assets/redwoods/textures/logo.png",
+
+  "environment": "*",
+  "entrypoints": {
+	"main": [
+	  "net.coderbot.redwoods.Redwoods"
+	]
+  },
+
+  "depends": {
+	"fabricloader": ">=0.4.0",
+	"fabric": "*"
+  }
+}

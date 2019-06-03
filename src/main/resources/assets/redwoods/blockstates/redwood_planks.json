@@ -1,5 +1,5 @@
 {
   "variants": {
-	"normal": { "model": "redwoods:redwood_planks" }
+	"": { "model": "redwoods:block/redwood_planks" }
   }
 }

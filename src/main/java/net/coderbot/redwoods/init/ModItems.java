@@ -58,14 +58,14 @@ public class ModItems {
 		REDWOOD_SLAB = register("redwoods:redwood_slab", ModBlocks.REDWOOD_SLAB);
 		FIR_SLAB = register("redwoods:fir_slab", ModBlocks.FIR_SLAB);
 
-		REDWOOD_STAIRS = register("redwoods:", ModBlocks.REDWOOD_STAIRS);
-		FIR_STAIRS = register("redwoods:", ModBlocks.FIR_STAIRS);
+		REDWOOD_STAIRS = register("redwoods:redwood_stairs", ModBlocks.REDWOOD_STAIRS);
+		FIR_STAIRS = register("redwoods:fir_stairs", ModBlocks.FIR_STAIRS);
 
-		REDWOOD_FENCE = register("redwoods:", ModBlocks.REDWOOD_FENCE);
-		FIR_FENCE = register("redwoods:", ModBlocks.FIR_FENCE);
+		REDWOOD_FENCE = register("redwoods:redwood_fence", ModBlocks.REDWOOD_FENCE);
+		FIR_FENCE = register("redwoods:fir_fence", ModBlocks.FIR_FENCE);
 
-		REDWOOD_FENCE_GATE = register("redwoods:", ModBlocks.REDWOOD_FENCE_GATE);
-		FIR_FENCE_GATE = register("redwoods:", ModBlocks.FIR_FENCE_GATE);
+		REDWOOD_FENCE_GATE = register("redwoods:redwood_fence_gate", ModBlocks.REDWOOD_FENCE_GATE);
+		FIR_FENCE_GATE = register("redwoods:fir_fence_gate", ModBlocks.FIR_FENCE_GATE);
 
 		REDWOOD_DOOR = Registry.register(Registry.ITEM, "redwoods:redwood_door", new TallBlockItem(ModBlocks.REDWOOD_DOOR, new Item.Settings().itemGroup(Redwoods.ITEM_GROUP)));
 		FIR_DOOR = Registry.register(Registry.ITEM, "redwoods:fir_door", new TallBlockItem(ModBlocks.FIR_DOOR, new Item.Settings().itemGroup(Redwoods.ITEM_GROUP)));

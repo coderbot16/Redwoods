@@ -16,8 +16,11 @@ public class Redwoods implements ModInitializer {
 		ITEM_GROUP = FabricItemGroupBuilder.build(new Identifier("redwoods", "items"), () -> new ItemStack(ModItems.REDWOOD_SAPLING));
 
 		ModBlocks.registerBlocks();
+		ModItems.registerItems();
 	}
 
 	// TODO: Creative Tab
 	// TODO: Smelting recipes (logs + quarter logs -> charcoal, 0.15F xp)
+
+	// TODO: Bark and stripped logs
 }

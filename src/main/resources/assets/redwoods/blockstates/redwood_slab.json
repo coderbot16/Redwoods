@@ -1,6 +1,7 @@
 {
   "variants": {
-    "half=bottom": { "model": "redwoods:half_slab_redwood" },
-    "half=top": { "model": "redwoods:upper_slab_redwood" }
+    "type=bottom": { "model": "redwoods:block/redwood_slab" },
+    "type=top": { "model": "redwoods:block/redwood_slab_top" },
+    "type=double": { "model": "redwoods:block/redwood_planks" }
   }
 }
