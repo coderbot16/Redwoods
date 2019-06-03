@@ -1,16 +1,19 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"PPP"
+		"PSP",
+		"PSP"
 	],
 	"key": {
 		"P": {
 			"item": "redwoods:redwood_planks"
+		},
+		"S": {
+		    "item": "minecraft:stick"
 		}
 	},
 	"result": {
-		"item": "redwoods:redwood_slab",
-		"data": 0,
-		"count": 6
+		"item": "redwoods:redwood_fence",
+		"count": 3
 	}
 }

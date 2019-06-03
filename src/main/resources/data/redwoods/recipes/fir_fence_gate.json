@@ -6,14 +6,13 @@
 	],
 	"key": {
 		"P": {
-			"item": "redwoods:redwood_planks"
+			"item": "redwoods:fir_planks"
 		},
 		"S": {
-			"type": "forge:ore_dict",
-			"ore": "stickWood"
+		    "item": "minecraft:stick"
 		}
 	},
 	"result": {
-		"item": "redwoods:redwood_fence_gate"
+		"item": "redwoods:fir_fence_gate"
 	}
 }

@@ -23,4 +23,5 @@ public class Redwoods implements ModInitializer {
 	// TODO: Smelting recipes (logs + quarter logs -> charcoal, 0.15F xp)
 
 	// TODO: Bark and stripped logs
+	// TODO: Boats
 }
