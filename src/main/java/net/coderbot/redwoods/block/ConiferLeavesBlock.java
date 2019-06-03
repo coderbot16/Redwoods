@@ -33,15 +33,16 @@ public class ConiferLeavesBlock extends Block {
 		return state.get(DISTANCE) == MAX_DISTANCE && !state.get(PERSISTENT);
 	}
 
-	public void onRandomTick(BlockState state, World world, BlockPos pos, Random random_1) {
+	public void onRandomTick(BlockState state, World world, BlockPos pos, Random random) {
 		if (!state.get(PERSISTENT) && state.get(DISTANCE) == MAX_DISTANCE) {
+			System.out.println("DECAY @ "+pos);
 			dropStacks(state, world, pos);
 			world.clearBlockState(pos, false);
 		}
 
 	}
 
-	public void onScheduledTick(BlockState state, World world, BlockPos pos, Random random_1) {
+	public void onScheduledTick(BlockState state, World world, BlockPos pos, Random random) {
 		world.setBlockState(pos, updateDistanceFromLogs(state, world, pos), 3);
 	}
 
@@ -49,8 +50,8 @@ public class ConiferLeavesBlock extends Block {
 		return RedwoodsConfig.leavesDiffuseSkylight ? 1 : 0;
 	}
 
-	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction_1, BlockState blockState_2, IWorld world, BlockPos pos, BlockPos blockPos_2) {
-		int distance = getDistanceFromLog(blockState_2) + 1;
+	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, IWorld world, BlockPos pos, BlockPos neighborPos) {
+		int distance = getDistanceFromLog(neighborState) + 1;
 		if (distance != 1 || state.get(DISTANCE) != distance) {
 			world.getBlockTickScheduler().schedule(pos, this, 1);
 		}
@@ -105,6 +106,12 @@ public class ConiferLeavesBlock extends Block {
 	@Override
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		Blocks.OAK_LEAVES.randomDisplayTick(state, world, pos, random);
+	}
+
+	@Override
+	@SuppressWarnings("deprecation")
+	public boolean isSideInvisible(BlockState state, BlockState neighborState, Direction offset) {
+		return RedwoodsConfig.useOptiLeaves && neighborState.getBlock() instanceof ConiferLeavesBlock;
 	}
 
 	@Override

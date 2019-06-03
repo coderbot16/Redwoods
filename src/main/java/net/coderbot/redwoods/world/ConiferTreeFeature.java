@@ -1,6 +1,7 @@
 package net.coderbot.redwoods.world;
 
 import com.mojang.datafixers.Dynamic;
+import net.coderbot.redwoods.block.ConiferLeavesBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.Direction;
@@ -54,19 +55,9 @@ public class ConiferTreeFeature extends AbstractTreeFeature<DefaultFeatureConfig
 			return false;
 		}
 
-		// TODO: Leaves Decay
-		/*boolean oldAllowLeavesDecay = BlockConiferLeaves.allowLeavesDecay;
-		if(!doBlockNotify) {
-			BlockConiferLeaves.allowLeavesDecay = false;
-		}*/
-
 		setBlockState(blocks, world, origin.down(), Blocks.DIRT.getDefaultState(), boundingBox);
-		growLeaves(blocks, world, origin, height, bareTrunkHeight, maxRadius, boundingBox);
 		growTrunk(blocks, world, new BlockPos.Mutable(origin), height, boundingBox);
-
-		/*if(!doBlockNotify) {
-			BlockConiferLeaves.allowLeavesDecay = oldAllowLeavesDecay;
-		}*/
+		growLeaves(blocks, world, origin, height, bareTrunkHeight, maxRadius, boundingBox);
 
 		return true;
 	}
@@ -105,7 +96,10 @@ public class ConiferTreeFeature extends AbstractTreeFeature<DefaultFeatureConfig
 		for(int dY = height; dY >= bareTrunkHeight; dY--) {
 			for(int dZ = -radius; dZ <= radius; dZ++) {
 				for(int dX = -radius; dX <= radius; dX++) {
-					if(radius > 0 && Math.abs(dZ) == radius && Math.abs(dX) == radius) {
+					int aZ = Math.abs(dZ);
+					int aX = Math.abs(dX);
+
+					if(radius > 0 && aZ == radius && aX == radius) {
 						// Cull corners
 						continue;
 					}
@@ -113,7 +107,7 @@ public class ConiferTreeFeature extends AbstractTreeFeature<DefaultFeatureConfig
 					pos.set(origin.getX() + dX, origin.getY() + dY, origin.getZ() + dZ);
 
 					if(AbstractTreeFeature.isAirOrLeaves(world, pos)) {
-						setBlockState(blocks, world, pos, leaves, boundingBox);
+						setBlockState(blocks, world, pos, leaves.with(ConiferLeavesBlock.DISTANCE, Math.max(aZ + aX, 1)), boundingBox);
 					}
 				}
 			}
