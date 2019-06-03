@@ -21,6 +21,9 @@
   "entrypoints": {
 	"main": [
 	  "net.coderbot.redwoods.Redwoods"
+	],
+	"client": [
+	  "net.coderbot.redwoods.RedwoodsClient"
 	]
   },
 

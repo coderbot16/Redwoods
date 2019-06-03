@@ -15,8 +15,8 @@ public class ModBlocks {
 	public static ConiferSaplingBlock REDWOOD_SAPLING;
 	public static ConiferSaplingBlock FIR_SAPLING;
 
-	public static LeavesBlock REDWOOD_LEAVES;
-	public static LeavesBlock FIR_LEAVES;
+	public static ConiferLeavesBlock REDWOOD_LEAVES;
+	public static ConiferLeavesBlock FIR_LEAVES;
 
 	public static ConiferSaplingGenerator.TreeDefinition REDWOOD;
 	public static ConiferSaplingGenerator.TreeDefinition FIR;
@@ -49,8 +49,8 @@ public class ModBlocks {
 		REDWOOD_LOG.setQuarter(REDWOOD_LOG_QUARTER);
 		FIR_LOG.setQuarter(FIR_LOG_QUARTER);
 
-		REDWOOD_LEAVES = Registry.register(Registry.BLOCK, "redwoods:redwood_leaves", new LeavesBlock(Block.Settings.copy(Blocks.SPRUCE_LEAVES)));
-		FIR_LEAVES = Registry.register(Registry.BLOCK, "redwoods:fir_leaves", new LeavesBlock(Block.Settings.copy(Blocks.SPRUCE_LEAVES)));
+		REDWOOD_LEAVES = Registry.register(Registry.BLOCK, "redwoods:redwood_leaves", new ConiferLeavesBlock(Block.Settings.copy(Blocks.SPRUCE_LEAVES)));
+		FIR_LEAVES = Registry.register(Registry.BLOCK, "redwoods:fir_leaves", new ConiferLeavesBlock(Block.Settings.copy(Blocks.SPRUCE_LEAVES)));
 
 		REDWOOD = new ConiferSaplingGenerator.TreeDefinition();
 		REDWOOD.wood = REDWOOD_LOG.getDefaultState().with(CenterLogBlock.AXIS, Direction.Axis.Y);

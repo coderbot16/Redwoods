@@ -73,27 +73,8 @@ public class ModItems {
 		LOG_TURNER = Registry.register(Registry.ITEM, "redwoods:log_turner", new LogTurnerItem(new Item.Settings().itemGroup(Redwoods.ITEM_GROUP)));
 	}
 
-	// TODO
-	public static void registerOreDict() {
-		registerOre("logWood", REDWOOD_LOG, FIR_LOG, REDWOOD_LOG_QUARTER, FIR_LOG_QUARTER);
-		registerOre("treeSapling", REDWOOD_SAPLING, FIR_SAPLING);
-		registerOre("treeLeaves", REDWOOD_LEAVES, FIR_LEAVES);
-		registerOre("plankWood", REDWOOD_PLANKS, FIR_PLANKS);
-		registerOre("slabWood", REDWOOD_SLAB, FIR_SLAB);
-		registerOre("stairWood", REDWOOD_STAIRS, FIR_STAIRS);
-		registerOre("fenceWood", REDWOOD_FENCE, FIR_FENCE);
-		registerOre("fenceGateWood", REDWOOD_FENCE_GATE, FIR_FENCE_GATE);
-		registerOre("doorWood", REDWOOD_DOOR, FIR_DOOR);
-	}
-
 	private static Item register(String name, Block block) {
 		Item item = new BlockItem(block, new Item.Settings().itemGroup(Redwoods.ITEM_GROUP));
 		return Registry.register(Registry.ITEM, name, item);
-	}
-
-	private static void registerOre(String name, Item... items) {
-		for(Item item: items) {
-			// TODO OreDictionary.registerOre(name, item);
-		}
 	}
 }
