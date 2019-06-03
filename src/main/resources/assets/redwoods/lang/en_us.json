@@ -1,0 +1,34 @@
+{
+  "itemGroup.redwoods.items": "Redwoods",
+
+  "block.redwoods.redwood_log": "Redwood Log",
+  "block.redwoods.fir_log": "Fir Log",
+  "block.redwoods.redwood_log_quarter": "Redwood Log",
+  "block.redwoods.fir_log_quarter": "Fir Log",
+
+  "block.redwoods.redwood_sapling": "Redwood Sapling",
+  "block.redwoods.fir_sapling": "Fir Sapling",
+
+  "block.redwoods.redwood_leaves": "Redwood Leaves",
+  "block.redwoods.fir_leaves": "Fir Leaves",
+
+  "block.redwoods.redwood_planks": "Redwood Planks",
+  "block.redwoods.fir_planks": "Fir Wood Planks",
+
+  "block.redwoods.redwood_slab": "Redwood Slab",
+  "block.redwoods.fir_slab": "Fir Wood Slab",
+
+  "block.redwoods.redwood_stairs": "Redwood Stairs",
+  "block.redwoods.fir_stairs": "Fir Wood Stairs",
+
+  "block.redwoods.redwood_fence": "Redwood Fence",
+  "block.redwoods.fir_fence": "Fir Fence",
+
+  "block.redwoods.redwood_fence_gate": "Redwood Fence Gate",
+  "block.redwoods.fir_fence_gate": "Fir Fence Gate",
+
+  "block.redwoods.redwood_door": "Redwood Door",
+  "block.redwoods.fir_door": "Fir Door",
+
+  "item.redwoods.log_turner": "Log Turner"
+}
