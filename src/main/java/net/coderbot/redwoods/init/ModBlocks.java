@@ -1,151 +1,129 @@
 package net.coderbot.redwoods.init;
 
-import net.coderbot.redwoods.Redwoods;
 import net.coderbot.redwoods.block.*;
+import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.minecraft.block.*;
-import net.minecraft.block.material.MapColor;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.block.statemap.StateMap;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.registry.Registry;
 
-@Mod.EventBusSubscriber
 public class ModBlocks {
 	public static BlockCenterLog REDWOOD_LOG;
 	public static BlockCenterLog FIR_LOG;
 	public static BlockQuarterLog REDWOOD_LOG_QUARTER;
 	public static BlockQuarterLog FIR_LOG_QUARTER;
 
-	public static BlockConiferSapling REDWOOD_SAPLING;
-	public static BlockConiferSapling FIR_SAPLING;
+	public static ConiferSaplingBlock REDWOOD_SAPLING;
+	public static ConiferSaplingBlock FIR_SAPLING;
 
-	public static BlockConiferLeaves REDWOOD_LEAVES;
-	public static BlockConiferLeaves FIR_LEAVES;
+	public static LeavesBlock REDWOOD_LEAVES;
+	public static LeavesBlock FIR_LEAVES;
 
-	public static BlockConiferSapling.TreeDefinition REDWOOD;
-	public static BlockConiferSapling.TreeDefinition FIR;
+	public static ConiferSaplingGenerator.TreeDefinition REDWOOD;
+	public static ConiferSaplingGenerator.TreeDefinition FIR;
 
-	public static BlockConiferPlanks REDWOOD_PLANKS;
-	public static BlockConiferPlanks FIR_PLANKS;
+	public static Block REDWOOD_PLANKS;
+	public static Block FIR_PLANKS;
 
-	public static BlockConiferSlab REDWOOD_SLAB;
-	public static BlockConiferSlab FIR_SLAB;
-
-	public static BlockConiferSlab REDWOOD_DOUBLE_SLAB;
-	public static BlockConiferSlab FIR_DOUBLE_SLAB;
+	public static SlabBlock REDWOOD_SLAB;
+	public static SlabBlock FIR_SLAB;
 
 	public static BlockConiferStairs REDWOOD_STAIRS;
 	public static BlockConiferStairs FIR_STAIRS;
 
-	public static BlockFence REDWOOD_FENCE;
-	public static BlockFence FIR_FENCE;
+	public static FenceBlock REDWOOD_FENCE;
+	public static FenceBlock FIR_FENCE;
 
-	public static BlockFenceGate REDWOOD_FENCE_GATE;
-	public static BlockFenceGate FIR_FENCE_GATE;
+	public static FenceGateBlock REDWOOD_FENCE_GATE;
+	public static FenceGateBlock FIR_FENCE_GATE;
 
-	public static BlockConiferDoor REDWOOD_DOOR;
-	public static BlockConiferDoor FIR_DOOR;
+	public static ConiferDoorBlock REDWOOD_DOOR;
+	public static ConiferDoorBlock FIR_DOOR;
+	
+	public static void registerBlocks() {
+		REDWOOD_LOG = Registry.register(Registry.BLOCK, "redwoods:redwood_log", new BlockCenterLog(Block.Settings.copy(Blocks.SPRUCE_LOG)));
+		FIR_LOG = Registry.register(Registry.BLOCK, "redwoods:fir_log", new BlockCenterLog(Block.Settings.copy(Blocks.SPRUCE_LOG)));
 
-	@SubscribeEvent
-	public static void registerBlocks(RegistryEvent.Register<Block> event) {
-		REDWOOD_LOG = register(event, new BlockCenterLog(), "redwood_log");
-		FIR_LOG = register(event, new BlockCenterLog(), "fir_log");
-
-		REDWOOD_LOG_QUARTER = register(event, new BlockQuarterLog(), "redwood_log_quarter");
-		FIR_LOG_QUARTER = register(event, new BlockQuarterLog(), "fir_log_quarter");
+		REDWOOD_LOG_QUARTER = Registry.register(Registry.BLOCK, "redwoods:redwood_log_quarter", new BlockQuarterLog(Block.Settings.copy(Blocks.SPRUCE_LOG)));
+		FIR_LOG_QUARTER = Registry.register(Registry.BLOCK, "redwoods:fir_log_quarter", new BlockQuarterLog(Block.Settings.copy(Blocks.SPRUCE_LOG)));
 
 		REDWOOD_LOG.setQuarter(REDWOOD_LOG_QUARTER);
 		FIR_LOG.setQuarter(FIR_LOG_QUARTER);
 
-		REDWOOD_LEAVES = register(event, new BlockConiferLeaves(), "redwood_leaves");
-		FIR_LEAVES = register(event, new BlockConiferLeaves(), "fir_leaves");
+		REDWOOD_LEAVES = Registry.register(Registry.BLOCK, "redwoods:redwood_leaves", new LeavesBlock(Block.Settings.copy(Blocks.SPRUCE_LEAVES)));
+		FIR_LEAVES = Registry.register(Registry.BLOCK, "redwoods:fir_leaves", new LeavesBlock(Block.Settings.copy(Blocks.SPRUCE_LEAVES)));
 
-		REDWOOD = new BlockConiferSapling.TreeDefinition();
-		REDWOOD.wood = REDWOOD_LOG.getDefaultState().withProperty(BlockCenterLog.LOG_AXIS, BlockLog.EnumAxis.Y);
-		REDWOOD.woodSW = REDWOOD_LOG_QUARTER.getDefaultState().withProperty(BlockQuarterLog.LOG_AXIS, BlockLog.EnumAxis.Y).withProperty(BlockQuarterLog.BARK_SIDE, BlockQuarterLog.BarkSide.SOUTHWEST);
-		REDWOOD.woodNW = REDWOOD_LOG_QUARTER.getDefaultState().withProperty(BlockQuarterLog.LOG_AXIS, BlockLog.EnumAxis.Y).withProperty(BlockQuarterLog.BARK_SIDE, BlockQuarterLog.BarkSide.NORTHWEST);
-		REDWOOD.woodNE = REDWOOD_LOG_QUARTER.getDefaultState().withProperty(BlockQuarterLog.LOG_AXIS, BlockLog.EnumAxis.Y).withProperty(BlockQuarterLog.BARK_SIDE, BlockQuarterLog.BarkSide.NORTHEAST);
-		REDWOOD.woodSE = REDWOOD_LOG_QUARTER.getDefaultState().withProperty(BlockQuarterLog.LOG_AXIS, BlockLog.EnumAxis.Y).withProperty(BlockQuarterLog.BARK_SIDE, BlockQuarterLog.BarkSide.SOUTHEAST);
-		REDWOOD.leaves = REDWOOD_LEAVES.getDefaultState().withProperty(BlockConiferLeaves.CHECK_DECAY, false);
+		REDWOOD = new ConiferSaplingGenerator.TreeDefinition();
+		REDWOOD.wood = REDWOOD_LOG.getDefaultState().with(BlockCenterLog.AXIS, Direction.Axis.Y);
+		REDWOOD.woodSW = REDWOOD_LOG_QUARTER.getDefaultState().with(BlockQuarterLog.AXIS, Direction.Axis.Y).with(BlockQuarterLog.BARK_SIDE, BlockQuarterLog.BarkSide.SOUTHWEST);
+		REDWOOD.woodNW = REDWOOD_LOG_QUARTER.getDefaultState().with(BlockQuarterLog.AXIS, Direction.Axis.Y).with(BlockQuarterLog.BARK_SIDE, BlockQuarterLog.BarkSide.NORTHWEST);
+		REDWOOD.woodNE = REDWOOD_LOG_QUARTER.getDefaultState().with(BlockQuarterLog.AXIS, Direction.Axis.Y).with(BlockQuarterLog.BARK_SIDE, BlockQuarterLog.BarkSide.NORTHEAST);
+		REDWOOD.woodSE = REDWOOD_LOG_QUARTER.getDefaultState().with(BlockQuarterLog.AXIS, Direction.Axis.Y).with(BlockQuarterLog.BARK_SIDE, BlockQuarterLog.BarkSide.SOUTHEAST);
+		REDWOOD.leaves = REDWOOD_LEAVES.getDefaultState();
 
-		FIR = new BlockConiferSapling.TreeDefinition();
-		FIR.wood = FIR_LOG.getDefaultState().withProperty(BlockCenterLog.LOG_AXIS, BlockLog.EnumAxis.Y);
-		FIR.woodSW = FIR_LOG_QUARTER.getDefaultState().withProperty(BlockQuarterLog.LOG_AXIS, BlockLog.EnumAxis.Y).withProperty(BlockQuarterLog.BARK_SIDE, BlockQuarterLog.BarkSide.SOUTHWEST);
-		FIR.woodNW = FIR_LOG_QUARTER.getDefaultState().withProperty(BlockQuarterLog.LOG_AXIS, BlockLog.EnumAxis.Y).withProperty(BlockQuarterLog.BARK_SIDE, BlockQuarterLog.BarkSide.NORTHWEST);
-		FIR.woodNE = FIR_LOG_QUARTER.getDefaultState().withProperty(BlockQuarterLog.LOG_AXIS, BlockLog.EnumAxis.Y).withProperty(BlockQuarterLog.BARK_SIDE, BlockQuarterLog.BarkSide.NORTHEAST);
-		FIR.woodSE = FIR_LOG_QUARTER.getDefaultState().withProperty(BlockQuarterLog.LOG_AXIS, BlockLog.EnumAxis.Y).withProperty(BlockQuarterLog.BARK_SIDE, BlockQuarterLog.BarkSide.SOUTHEAST);
-		FIR.leaves = FIR_LEAVES.getDefaultState().withProperty(BlockConiferLeaves.CHECK_DECAY, false);
+		FIR = new ConiferSaplingGenerator.TreeDefinition();
+		FIR.wood = FIR_LOG.getDefaultState().with(BlockCenterLog.AXIS, Direction.Axis.Y);
+		FIR.woodSW = FIR_LOG_QUARTER.getDefaultState().with(BlockQuarterLog.AXIS, Direction.Axis.Y).with(BlockQuarterLog.BARK_SIDE, BlockQuarterLog.BarkSide.SOUTHWEST);
+		FIR.woodNW = FIR_LOG_QUARTER.getDefaultState().with(BlockQuarterLog.AXIS, Direction.Axis.Y).with(BlockQuarterLog.BARK_SIDE, BlockQuarterLog.BarkSide.NORTHWEST);
+		FIR.woodNE = FIR_LOG_QUARTER.getDefaultState().with(BlockQuarterLog.AXIS, Direction.Axis.Y).with(BlockQuarterLog.BARK_SIDE, BlockQuarterLog.BarkSide.NORTHEAST);
+		FIR.woodSE = FIR_LOG_QUARTER.getDefaultState().with(BlockQuarterLog.AXIS, Direction.Axis.Y).with(BlockQuarterLog.BARK_SIDE, BlockQuarterLog.BarkSide.SOUTHEAST);
+		FIR.leaves = FIR_LEAVES.getDefaultState();
 
-		REDWOOD_SAPLING = register(event, new BlockConiferSapling(REDWOOD), "redwood_sapling");
-		FIR_SAPLING = register(event, new BlockConiferSapling(FIR), "fir_sapling");
+		REDWOOD_SAPLING = Registry.register(Registry.BLOCK, "redwoods:redwood_sapling", new ConiferSaplingBlock(REDWOOD, Block.Settings.copy(Blocks.SPRUCE_SAPLING)));
+		FIR_SAPLING = Registry.register(Registry.BLOCK, "redwoods:fir_sapling", new ConiferSaplingBlock(FIR, Block.Settings.copy(Blocks.SPRUCE_SAPLING)));
 
-		REDWOOD_PLANKS = register(event, new BlockConiferPlanks(), "redwood_planks");
-		FIR_PLANKS = register(event, new BlockConiferPlanks(), "fir_planks");
+		REDWOOD_PLANKS = Registry.register(Registry.BLOCK, "redwoods:redwood_planks", new Block(Block.Settings.copy(Blocks.SPRUCE_PLANKS)));
+		FIR_PLANKS = Registry.register(Registry.BLOCK, "redwoods:fir_planks", new Block(Block.Settings.copy(Blocks.SPRUCE_PLANKS)));
 
-		REDWOOD_SLAB = register(event, new BlockConiferSlab(), "redwood_slab");
-		FIR_SLAB = register(event, new BlockConiferSlab(), "fir_slab");
+		REDWOOD_SLAB = Registry.register(Registry.BLOCK, "redwoods:redwood_slab", new SlabBlock(Block.Settings.copy(Blocks.SPRUCE_SLAB)));
+		FIR_SLAB = Registry.register(Registry.BLOCK, "redwoods:fir_slab", new SlabBlock(Block.Settings.copy(Blocks.SPRUCE_SLAB)));
 
-		REDWOOD_DOUBLE_SLAB = register(event, new BlockConiferDoubleSlab(), "redwood_double_slab");
-		FIR_DOUBLE_SLAB = register(event, new BlockConiferDoubleSlab(), "fir_double_slab");
+		REDWOOD_STAIRS = Registry.register(Registry.BLOCK, "redwoods:redwood_stairs", new BlockConiferStairs(REDWOOD_PLANKS, Block.Settings.copy(Blocks.SPRUCE_STAIRS)));
+		FIR_STAIRS = Registry.register(Registry.BLOCK, "redwoods:fir_stairs", new BlockConiferStairs(FIR_PLANKS, Block.Settings.copy(Blocks.SPRUCE_STAIRS)));
 
-		REDWOOD_STAIRS = register(event, new BlockConiferStairs(REDWOOD_PLANKS), "redwood_stairs");
-		FIR_STAIRS = register(event, new BlockConiferStairs(FIR_PLANKS), "fir_stairs");
+		REDWOOD_FENCE = Registry.register(Registry.BLOCK, "redwoods:redwood_fence", new FenceBlock(Block.Settings.copy(Blocks.SPRUCE_FENCE)));
+		FIR_FENCE = Registry.register(Registry.BLOCK, "redwoods:fir_fence", new FenceBlock(Block.Settings.copy(Blocks.SPRUCE_FENCE)));
 
-		REDWOOD_FENCE = register(event, new BlockFence(Material.WOOD, MapColor.OBSIDIAN) {{ setSoundType(SoundType.WOOD); }}, "redwood_fence");
-		REDWOOD_FENCE.setHardness(2.0F).setResistance(5.0F);
-		FIR_FENCE = register(event, new BlockFence(Material.WOOD, MapColor.OBSIDIAN) {{ setSoundType(SoundType.WOOD); }}, "fir_fence");
-		FIR_FENCE.setHardness(2.0F).setResistance(5.0F);
+		REDWOOD_FENCE_GATE = Registry.register(Registry.BLOCK, "redwoods:redwood_fence_gate", new FenceGateBlock(Block.Settings.copy(Blocks.SPRUCE_FENCE)));
+		FIR_FENCE_GATE = Registry.register(Registry.BLOCK, "redwoods:fir_fence_gate", new FenceGateBlock(Block.Settings.copy(Blocks.SPRUCE_FENCE)));
 
-		REDWOOD_FENCE_GATE = register(event, new BlockFenceGate(BlockPlanks.EnumType.SPRUCE) {{ setSoundType(SoundType.WOOD); }}, "redwood_fence_gate");
-		REDWOOD_FENCE_GATE.setHardness(2.0F).setResistance(5.0F);
-		FIR_FENCE_GATE = register(event, new BlockFenceGate(BlockPlanks.EnumType.SPRUCE) {{ setSoundType(SoundType.WOOD); }}, "fir_fence_gate");
-		FIR_FENCE_GATE.setHardness(2.0F).setResistance(5.0F);
-
-		REDWOOD_DOOR = register(event, new BlockConiferDoor(), "redwood_door");
-		REDWOOD_DOOR.setHardness(3.0F);
-		FIR_DOOR = register(event, new BlockConiferDoor(), "fir_door");
-		FIR_DOOR.setHardness(3.0F);
+		REDWOOD_DOOR = Registry.register(Registry.BLOCK, "redwoods:redwood_door", new ConiferDoorBlock(Block.Settings.copy(Blocks.SPRUCE_DOOR)));
+		FIR_DOOR = Registry.register(Registry.BLOCK, "redwoods:fir_door", new ConiferDoorBlock(Block.Settings.copy(Blocks.SPRUCE_DOOR)));
 
 		// Burn the blocks!
 		registerFlammables();
 	}
 
 	private static void registerFlammables() {
-		Blocks.FIRE.setFireInfo(REDWOOD_LOG, 5, 5);
-		Blocks.FIRE.setFireInfo(FIR_LOG, 5, 5);
-		Blocks.FIRE.setFireInfo(REDWOOD_LOG_QUARTER, 5, 5);
-		Blocks.FIRE.setFireInfo(FIR_LOG_QUARTER, 5, 5);
+		FlammableBlockRegistry.getDefaultInstance().add(REDWOOD_LOG, 5, 5);
+		FlammableBlockRegistry.getDefaultInstance().add(FIR_LOG, 5, 5);
+		FlammableBlockRegistry.getDefaultInstance().add(REDWOOD_LOG_QUARTER, 5, 5);
+		FlammableBlockRegistry.getDefaultInstance().add(FIR_LOG_QUARTER, 5, 5);
 
-		Blocks.FIRE.setFireInfo(REDWOOD_LEAVES, 30, 60);
-		Blocks.FIRE.setFireInfo(FIR_LEAVES, 30, 60);
+		FlammableBlockRegistry.getDefaultInstance().add(REDWOOD_LEAVES, 30, 60);
+		FlammableBlockRegistry.getDefaultInstance().add(FIR_LEAVES, 30, 60);
 
-		Blocks.FIRE.setFireInfo(REDWOOD_PLANKS, 5, 20);
-		Blocks.FIRE.setFireInfo(FIR_PLANKS, 5, 20);
+		FlammableBlockRegistry.getDefaultInstance().add(REDWOOD_PLANKS, 5, 20);
+		FlammableBlockRegistry.getDefaultInstance().add(FIR_PLANKS, 5, 20);
 
-		Blocks.FIRE.setFireInfo(REDWOOD_SLAB, 5, 20);
-		Blocks.FIRE.setFireInfo(FIR_SLAB, 5, 20);
+		FlammableBlockRegistry.getDefaultInstance().add(REDWOOD_SLAB, 5, 20);
+		FlammableBlockRegistry.getDefaultInstance().add(FIR_SLAB, 5, 20);
 
-		Blocks.FIRE.setFireInfo(REDWOOD_DOUBLE_SLAB, 5, 20);
-		Blocks.FIRE.setFireInfo(FIR_DOUBLE_SLAB, 5, 20);
+		FlammableBlockRegistry.getDefaultInstance().add(REDWOOD_STAIRS, 5, 20);
+		FlammableBlockRegistry.getDefaultInstance().add(FIR_STAIRS, 5, 20);
 
-		Blocks.FIRE.setFireInfo(REDWOOD_STAIRS, 5, 20);
-		Blocks.FIRE.setFireInfo(FIR_STAIRS, 5, 20);
+		FlammableBlockRegistry.getDefaultInstance().add(REDWOOD_FENCE, 5, 20);
+		FlammableBlockRegistry.getDefaultInstance().add(FIR_FENCE, 5, 20);
 
-		Blocks.FIRE.setFireInfo(REDWOOD_FENCE, 5, 20);
-		Blocks.FIRE.setFireInfo(FIR_FENCE, 5, 20);
-
-		Blocks.FIRE.setFireInfo(REDWOOD_FENCE_GATE, 5, 20);
-		Blocks.FIRE.setFireInfo(FIR_FENCE_GATE, 5, 20);
+		FlammableBlockRegistry.getDefaultInstance().add(REDWOOD_FENCE_GATE, 5, 20);
+		FlammableBlockRegistry.getDefaultInstance().add(FIR_FENCE_GATE, 5, 20);
 	}
 
-	@SubscribeEvent
+	/*private static <T extends Block> T register(String name, T block) {
+		// TODO: Unlocalized name + Creative Tab
+	}*/
+
+	// TODO
+	/*@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public static void registerModels(ModelRegistryEvent event) {
 		ModelLoader.setCustomStateMapper(REDWOOD_LEAVES, new StateMap.Builder().ignore(BlockConiferLeaves.CHECK_DECAY, BlockConiferLeaves.DECAYABLE).build());
@@ -154,15 +132,5 @@ public class ModBlocks {
 		ModelLoader.setCustomStateMapper(FIR_SLAB, new StateMap.Builder().ignore(BlockConiferSlab.VARIANT).build());
 		ModelLoader.setCustomStateMapper(REDWOOD_DOUBLE_SLAB, new StateMap.Builder().ignore(BlockConiferSlab.VARIANT).build());
 		ModelLoader.setCustomStateMapper(FIR_DOUBLE_SLAB, new StateMap.Builder().ignore(BlockConiferSlab.VARIANT).build());
-	}
-
-	private static <T extends Block> T register(RegistryEvent.Register<Block> event, T block, String name) {
-		block.setRegistryName(new ResourceLocation(Redwoods.MODID, name));
-		block.setUnlocalizedName(Redwoods.MODID + "." + name);
-		block.setCreativeTab(Redwoods.TAB);
-
-		event.getRegistry().register(block);
-
-		return block;
-	}
+	}*/
 }

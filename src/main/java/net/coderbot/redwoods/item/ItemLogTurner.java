@@ -1,41 +1,44 @@
 package net.coderbot.redwoods.item;
 
 import net.coderbot.redwoods.block.BlockQuarterLog;
-import net.minecraft.block.BlockLog;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.player.EntityPlayer;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.PillarBlock;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
+import net.minecraft.item.ItemUsageContext;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 public class ItemLogTurner extends Item {
-	public ItemLogTurner() {
-		super();
+	public ItemLogTurner(Item.Settings settings) {
+		super(settings);
 	}
 
-	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		IBlockState state = world.getBlockState(pos);
+	public ActionResult useOnBlock(ItemUsageContext context) {
+		BlockPos pos = context.getBlockPos();
+		World world = context.getWorld();
 
-		if(!(state.getBlock() instanceof BlockLog)) {
-			return EnumActionResult.PASS;
+		BlockState state = world.getBlockState(pos);
+
+		if(!(state.getBlock() instanceof PillarBlock)) {
+			return ActionResult.PASS;
 		}
 
-		BlockLog.EnumAxis currentAxis = state.getValue(BlockLog.LOG_AXIS);
+		Direction.Axis currentAxis = state.get(PillarBlock.AXIS);
 
-		if(player.isSneaking()) {
+		if(context.getPlayer() != null && context.getPlayer().isSneaking()) {
 			if(state.getBlock() instanceof BlockQuarterLog) {
-				BlockQuarterLog.BarkSide cycled = cycleBarkSide(state.getValue(BlockQuarterLog.BARK_SIDE));
-				BlockLog.EnumAxis newAxis = currentAxis;
+				BlockQuarterLog.BarkSide cycled = cycleBarkSide(state.get(BlockQuarterLog.BARK_SIDE));
+				Direction.Axis newAxis = currentAxis;
 
 				// First cycle the bark side. If we return to the start, then cycle the axis too.
 				if(cycled == BlockQuarterLog.BarkSide.SOUTHWEST) {
@@ -43,41 +46,32 @@ public class ItemLogTurner extends Item {
 				}
 
 				world.setBlockState(pos, state
-						.withProperty(BlockLog.LOG_AXIS, newAxis)
-						.withProperty(BlockQuarterLog.BARK_SIDE, cycled)
+						.with(PillarBlock.AXIS, newAxis)
+						.with(BlockQuarterLog.BARK_SIDE, cycled)
 				);
 
-				return EnumActionResult.SUCCESS;
+				return ActionResult.SUCCESS;
 			} else {
-				world.setBlockState(pos, state.withProperty(BlockLog.LOG_AXIS, cycleAxis(currentAxis)));
+				world.setBlockState(pos, state.with(PillarBlock.AXIS, cycleAxis(currentAxis)));
 
-				return EnumActionResult.SUCCESS;
-			}
-		} else if(currentAxis != BlockLog.EnumAxis.NONE) {
-			BlockLog.EnumAxis newAxis = BlockLog.EnumAxis.fromFacingAxis(facing.getAxis());
-
-			if(currentAxis != newAxis) {
-				world.setBlockState(pos, state.withProperty(BlockLog.LOG_AXIS, newAxis));
-
-				return EnumActionResult.SUCCESS;
+				return ActionResult.SUCCESS;
 			}
 		}
 
 		if(state.getBlock() instanceof BlockQuarterLog) {
-			world.setBlockState(pos, state.cycleProperty(BlockQuarterLog.BARK_SIDE));
+			world.setBlockState(pos, state.cycle(BlockQuarterLog.BARK_SIDE));
 
-			return EnumActionResult.SUCCESS;
+			return ActionResult.SUCCESS;
 		} else {
-			return EnumActionResult.PASS;
+			return ActionResult.PASS;
 		}
 	}
 
-	private static BlockLog.EnumAxis cycleAxis(BlockLog.EnumAxis axis) {
+	private static Direction.Axis cycleAxis(Direction.Axis axis) {
 		switch(axis) {
-			case X: return BlockLog.EnumAxis.Y;
-			case Y: return BlockLog.EnumAxis.Z;
-			case Z: return BlockLog.EnumAxis.X;
-			default: return BlockLog.EnumAxis.NONE;
+			case X: return Direction.Axis.Y;
+			case Y: return Direction.Axis.Z;
+			default: return Direction.Axis.X;
 		}
 	}
 
@@ -90,11 +84,13 @@ public class ItemLogTurner extends Item {
 		}
 	}
 
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
-		super.addInformation(stack, world, tooltip, flag);
-		tooltip.add("Use on a log to instantly set its axis to the side you clicked");
-		tooltip.add("When used on a quarter log, it will try to set the axis, and if it already matches, it will then rotate the bark side clockwise");
-		tooltip.add("When used while sneaking, it will simply cycle the axis and bark side");
+	@Environment(EnvType.CLIENT)
+	public void buildTooltip(ItemStack stack, /*TODO: @Nullable*/ World world, List<Component> tooltip, TooltipContext context) {
+		super.buildTooltip(stack, world, tooltip, context);
+
+		// TODO: Use TranslatableComponent
+		tooltip.add(new TextComponent("Use on a log to instantly set its axis to the side you clicked"));
+		tooltip.add(new TextComponent("When used on a quarter log, it will try to set the axis, and if it already matches, it will then rotate the bark side clockwise"));
+		tooltip.add(new TextComponent("When used while sneaking, it will simply cycle the axis and bark side"));
 	}
 }

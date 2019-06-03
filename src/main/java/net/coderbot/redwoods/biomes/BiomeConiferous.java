@@ -1,22 +1,14 @@
-package net.coderbot.redwoods.biomes;
+// TODO: BiomeConiferous
+/*package net.coderbot.redwoods.biomes;
 
-import mcp.MethodsReturnNonnullByDefault;
 import net.coderbot.redwoods.block.BlockConiferSapling;
 import net.coderbot.redwoods.init.ModBlocks;
-import net.coderbot.redwoods.world.WorldGenConifer;
-import net.coderbot.redwoods.world.WorldGenMegaConifer;
-import net.minecraft.block.BlockTallGrass;
-import net.minecraft.entity.passive.EntityWolf;
+import net.coderbot.redwoods.world.ConiferTreeFeature;
+import net.coderbot.redwoods.world.MegaConiferTreeFeature;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenTallGrass;
-import net.minecraft.world.gen.feature.WorldGenTrees;
-import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.BiomeDictionary;
 
 import java.util.Random;
 
-@MethodsReturnNonnullByDefault
 public class BiomeConiferous extends Biome {
 	private WorldGenAbstractTree[] trees;
 	private int fernPercentage;
@@ -100,25 +92,26 @@ public class BiomeConiferous extends Biome {
 
 			if(redwoodNormal) {
 				BlockConiferSapling.TreeDefinition tree = ModBlocks.REDWOOD;
-				trees[enabled++] = new WorldGenConifer(false, tree.wood, tree.leaves);
+				trees[enabled++] = new ConiferTreeFeature(false, tree.wood, tree.leaves);
 			}
 
 			if(redwoodMega) {
 				BlockConiferSapling.TreeDefinition tree = ModBlocks.REDWOOD;
-				trees[enabled++] = new WorldGenMegaConifer(false, tree.woodSW, tree.woodNW, tree.woodNE, tree.woodSE, tree.leaves);
+				trees[enabled++] = new MegaConiferTreeFeature(false, tree.woodSW, tree.woodNW, tree.woodNE, tree.woodSE, tree.leaves);
 			}
 
 			if(firNormal) {
 				BlockConiferSapling.TreeDefinition tree = ModBlocks.FIR;
-				trees[enabled++] = new WorldGenConifer(false, tree.wood, tree.leaves);
+				trees[enabled++] = new ConiferTreeFeature(false, tree.wood, tree.leaves);
 			}
 
 			if(firMega) {
 				BlockConiferSapling.TreeDefinition tree = ModBlocks.FIR;
-				trees[enabled] = new WorldGenMegaConifer(false, tree.woodSW, tree.woodNW, tree.woodNE, tree.woodSE, tree.leaves);
+				trees[enabled] = new MegaConiferTreeFeature(false, tree.woodSW, tree.woodNW, tree.woodNE, tree.woodSE, tree.leaves);
 			}
 
 			return trees;
 		}
 	}
 }
+*/

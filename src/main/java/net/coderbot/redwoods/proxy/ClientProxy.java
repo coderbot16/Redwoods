@@ -1,11 +1,13 @@
-package net.coderbot.redwoods.proxy;
+// TODO EVERYTHING
+
+/*package net.coderbot.redwoods.proxy;
 
 import net.coderbot.redwoods.block.BlockConiferLeaves;
 import net.coderbot.redwoods.init.ModBlocks;
 import net.coderbot.redwoods.init.ModItems;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockFenceGate;
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.item.Item;
@@ -63,7 +65,7 @@ public class ClientProxy extends CommonProxy {
 	@SubscribeEvent
 	public void handleBlockColors(ColorHandlerEvent.Block event) {
 		event.getBlockColors().registerBlockColorHandler(
-				(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) ->
+				(BlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) ->
 						worldIn.getBiome(pos).getFoliageColorAtPos(pos),
 				ModBlocks.REDWOOD_LEAVES,
 				ModBlocks.FIR_LEAVES
@@ -82,4 +84,4 @@ public class ClientProxy extends CommonProxy {
 	private void registerModel(Item item) {
 		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
 	}
-}
+}*/

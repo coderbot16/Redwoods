@@ -1,4 +1,5 @@
-package net.coderbot.redwoods.biomes;
+// TODO: BiomeAlpine
+/*package net.coderbot.redwoods.biomes;
 
 import net.minecraft.block.BlockTallGrass;
 import net.minecraft.entity.passive.EntityWolf;
@@ -58,3 +59,4 @@ public class BiomeAlpine extends BiomeHills {
 		}
 	}
 }
+*/

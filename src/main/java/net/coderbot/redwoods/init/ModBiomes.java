@@ -1,6 +1,7 @@
-package net.coderbot.redwoods.init;
+// TODO: Biomes
+/*package net.coderbot.redwoods.init;
 
-import net.coderbot.redwoods.Redwoods;
+import net.coderbot.redwoods.Redwoods_old;
 import net.coderbot.redwoods.RedwoodsConfig;
 import net.coderbot.redwoods.biomes.BiomeAlpine;
 import net.coderbot.redwoods.biomes.BiomeConiferous;
@@ -15,11 +16,11 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class ModBiomes {
 	// TODO: Consider an Alpine biome.
 
-	// Mega Redwoods
+	// Mega Redwoods_old
 	public static BiomeConiferous REDWOOD_FOREST;
 	public static BiomeConiferous.Properties REDWOOD_FOREST_PROPS;
 
-	// Normal Firs + Mega Redwoods
+	// Normal Firs + Mega Redwoods_old
 	public static BiomeConiferous LUSH_REDWOOD_FOREST;
 	public static BiomeConiferous.Properties LUSH_REDWOOD_FOREST_PROPS;
 
@@ -31,7 +32,7 @@ public class ModBiomes {
 	public static BiomeConiferous SNOWY_RAINFOREST;
 	public static BiomeConiferous.Properties SNOWY_RAINFOREST_PROPS;
 
-	// Sparse Normal Firs + Sparse Normal Redwoods + Snow + Basin
+	// Sparse Normal Firs + Sparse Normal Redwoods_old + Snow + Basin
 	public static BiomeAlpine ALPINE;
 	public static BiomeConiferous.Properties ALPINE_PROPS;
 
@@ -194,7 +195,7 @@ public class ModBiomes {
 
 	private static BiomeConiferous registerConiferBiome(RegistryEvent.Register<Biome> event, String name, BiomeConiferous.Properties properties) {
 		BiomeConiferous biome = new BiomeConiferous(properties);
-		biome.setRegistryName(Redwoods.MODID, name);
+		biome.setRegistryName(Redwoods_old.MODID, name);
 
 		event.getRegistry().register(biome);
 
@@ -203,10 +204,11 @@ public class ModBiomes {
 
 	private static BiomeAlpine registerAlpineBiome(RegistryEvent.Register<Biome> event, String name, BiomeConiferous.Properties properties) {
 		BiomeAlpine biome = new BiomeAlpine(properties);
-		biome.setRegistryName(Redwoods.MODID, name);
+		biome.setRegistryName(Redwoods_old.MODID, name);
 
 		event.getRegistry().register(biome);
 
 		return biome;
 	}
 }
+*/

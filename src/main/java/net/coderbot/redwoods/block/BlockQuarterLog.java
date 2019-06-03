@@ -1,84 +1,40 @@
 package net.coderbot.redwoods.block;
 
-import mcp.MethodsReturnNonnullByDefault;
-import net.minecraft.block.BlockLog;
-import net.minecraft.block.material.MapColor;
-import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockStateContainer;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
+import net.minecraft.block.Block;
+import net.minecraft.block.LogBlock;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.MaterialColor;
+import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.state.StateFactory;
+import net.minecraft.state.property.EnumProperty;
+import net.minecraft.util.StringIdentifiable;
+import net.minecraft.util.math.Direction;
 
-@MethodsReturnNonnullByDefault
-public class BlockQuarterLog extends BlockLog {
-	public static final PropertyEnum<BarkSide> BARK_SIDE = PropertyEnum.create("bark_side", BarkSide.class);
+public class BlockQuarterLog extends LogBlock {
+	public static final EnumProperty<BarkSide> BARK_SIDE = EnumProperty.create("bark_side", BarkSide.class);
 
-	public BlockQuarterLog() {
-		super();
+	public BlockQuarterLog(Block.Settings settings) {
+		super(MaterialColor.BROWN, settings);
 	}
 
 	@Override
-	public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-		return MapColor.OBSIDIAN;
+	protected void appendProperties(StateFactory.Builder<Block, BlockState> builder) {
+		super.appendProperties(builder);
+
+		builder.add(BARK_SIDE);
 	}
 
-	@Override
-	public IBlockState getStateFromMeta(int meta) {
-		EnumAxis axis;
-		BarkSide side;
+	public BlockState getPlacementState(ItemPlacementContext context) {
+		// BarkSide side = BarkSide.fromHit(context.getPlayerFacing().getAxis());
 
-		switch(meta >> 2) {
-			case 0:
-				axis = EnumAxis.X;
-				break;
-			case 1:
-				axis = EnumAxis.Y;
-				break;
-			case 2:
-				axis = EnumAxis.Z;
-				break;
-			default:
-				axis = EnumAxis.NONE;
-		}
+		// TODO BarkSide side = BarkSide.fromHit(EnumAxis.fromFacingAxis(facing.getAxis()), hitX, hitY, hitZ);
 
-		switch(meta & 3) {
-			case 0:
-				side = BarkSide.SOUTHWEST;
-				break;
-			case 1:
-				side = BarkSide.NORTHWEST;
-				break;
-			case 2:
-				side = BarkSide.NORTHEAST;
-				break;
-			default:
-				side = BarkSide.SOUTHEAST;
-		}
+		// return super.getPlacementState(context).with(BARK_SIDE, side);
 
-		return this.getDefaultState().withProperty(LOG_AXIS, axis).withProperty(BARK_SIDE, side);
+		throw new UnsupportedOperationException("TODO: getPlacementState");
 	}
 
-	@Override
-	public int getMetaFromState(IBlockState state) {
-		return (state.getValue(LOG_AXIS).ordinal() << 2) | state.getValue(BARK_SIDE).ordinal();
-	}
-
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, LOG_AXIS, BARK_SIDE);
-	}
-
-	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-		BarkSide side = BarkSide.fromHit(EnumAxis.fromFacingAxis(facing.getAxis()), hitX, hitY, hitZ);
-
-		return super.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(BARK_SIDE, side);
-	}
-
-	public enum BarkSide implements IStringSerializable {
+	public enum BarkSide implements StringIdentifiable {
 		SOUTHWEST("southwest"),
 		NORTHWEST("northwest"),
 		NORTHEAST("northeast"),
@@ -90,7 +46,7 @@ public class BlockQuarterLog extends BlockLog {
 			this.name = name;
 		}
 
-		public static BarkSide fromHit(EnumAxis axis, float hitX, float hitY, float hitZ) {
+		public static BarkSide fromHit(Direction.Axis axis, float hitX, float hitY, float hitZ) {
 			boolean hitEast;
 			boolean hitSouth;
 
@@ -133,7 +89,7 @@ public class BlockQuarterLog extends BlockLog {
 			return this.name;
 		}
 
-		public String getName() {
+		public String asString() {
 			return this.name;
 		}
 	}

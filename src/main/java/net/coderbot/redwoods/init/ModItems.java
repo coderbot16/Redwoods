@@ -3,17 +3,11 @@ package net.coderbot.redwoods.init;
 import net.coderbot.redwoods.Redwoods;
 import net.coderbot.redwoods.item.ItemLogTurner;
 import net.minecraft.block.Block;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemDoor;
-import net.minecraft.item.ItemSlab;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.oredict.OreDictionary;
+import net.minecraft.item.TallBlockItem;
+import net.minecraft.util.registry.Registry;
 
-@Mod.EventBusSubscriber
 public class ModItems {
 	public static Item REDWOOD_LOG;
 	public static Item FIR_LOG;
@@ -45,47 +39,41 @@ public class ModItems {
 	public static Item FIR_DOOR;
 
 	public static Item LOG_TURNER;
+	
+	public static void registerItems() {
+		REDWOOD_LOG = register("redwoods:redwood_log", ModBlocks.REDWOOD_LOG);
+		FIR_LOG = register("redwoods:fir_log", ModBlocks.FIR_LOG);
+		REDWOOD_LOG_QUARTER = register("redwoods:redwood_log_quarter", ModBlocks.REDWOOD_LOG_QUARTER);
+		FIR_LOG_QUARTER = register("redwoods:fir_log_quarter", ModBlocks.FIR_LOG_QUARTER);
 
-	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event) {
-		REDWOOD_LOG = register(event, ModBlocks.REDWOOD_LOG);
-		FIR_LOG = register(event, ModBlocks.FIR_LOG);
-		REDWOOD_LOG_QUARTER = register(event, ModBlocks.REDWOOD_LOG_QUARTER);
-		FIR_LOG_QUARTER = register(event, ModBlocks.FIR_LOG_QUARTER);
+		REDWOOD_SAPLING = register("redwoods:redwood_sapling", ModBlocks.REDWOOD_SAPLING);
+		FIR_SAPLING = register("redwoods:fir_sapling", ModBlocks.FIR_SAPLING);
 
-		REDWOOD_SAPLING = register(event, ModBlocks.REDWOOD_SAPLING);
-		FIR_SAPLING = register(event, ModBlocks.FIR_SAPLING);
+		REDWOOD_LEAVES = register("redwoods:redwood_leaves", ModBlocks.REDWOOD_LEAVES);
+		FIR_LEAVES = register("redwoods:fir_leaves", ModBlocks.FIR_LEAVES);
 
-		REDWOOD_LEAVES = register(event, ModBlocks.REDWOOD_LEAVES);
-		FIR_LEAVES = register(event, ModBlocks.FIR_LEAVES);
+		REDWOOD_PLANKS = register("redwoods:redwood_planks", ModBlocks.REDWOOD_PLANKS);
+		FIR_PLANKS = register("redwoods:fir_planks", ModBlocks.FIR_PLANKS);
 
-		REDWOOD_PLANKS = register(event, ModBlocks.REDWOOD_PLANKS);
-		FIR_PLANKS = register(event, ModBlocks.FIR_PLANKS);
+		REDWOOD_SLAB = register("redwoods:redwood_slab", ModBlocks.REDWOOD_SLAB);
+		FIR_SLAB = register("redwoods:fir_slab", ModBlocks.FIR_SLAB);
 
-		REDWOOD_SLAB = register(event, new ItemSlab(ModBlocks.REDWOOD_SLAB, ModBlocks.REDWOOD_SLAB, ModBlocks.REDWOOD_DOUBLE_SLAB), "redwood_slab");
-		FIR_SLAB = register(event, new ItemSlab(ModBlocks.FIR_SLAB, ModBlocks.FIR_SLAB, ModBlocks.FIR_DOUBLE_SLAB), "fir_slab");
+		REDWOOD_STAIRS = register("redwoods:", ModBlocks.REDWOOD_STAIRS);
+		FIR_STAIRS = register("redwoods:", ModBlocks.FIR_STAIRS);
 
-		REDWOOD_STAIRS = register(event, ModBlocks.REDWOOD_STAIRS);
-		FIR_STAIRS = register(event, ModBlocks.FIR_STAIRS);
+		REDWOOD_FENCE = register("redwoods:", ModBlocks.REDWOOD_FENCE);
+		FIR_FENCE = register("redwoods:", ModBlocks.FIR_FENCE);
 
-		REDWOOD_FENCE = register(event, ModBlocks.REDWOOD_FENCE);
-		FIR_FENCE = register(event, ModBlocks.FIR_FENCE);
+		REDWOOD_FENCE_GATE = register("redwoods:", ModBlocks.REDWOOD_FENCE_GATE);
+		FIR_FENCE_GATE = register("redwoods:", ModBlocks.FIR_FENCE_GATE);
 
-		REDWOOD_FENCE_GATE = register(event, ModBlocks.REDWOOD_FENCE_GATE);
-		FIR_FENCE_GATE = register(event, ModBlocks.FIR_FENCE_GATE);
+		REDWOOD_DOOR = Registry.register(Registry.ITEM, "redwoods:redwood_door", new TallBlockItem(ModBlocks.REDWOOD_DOOR, new Item.Settings().itemGroup(Redwoods.ITEM_GROUP)));
+		FIR_DOOR = Registry.register(Registry.ITEM, "redwoods:fir_door", new TallBlockItem(ModBlocks.FIR_DOOR, new Item.Settings().itemGroup(Redwoods.ITEM_GROUP)));
 
-		REDWOOD_DOOR = register(event, new ItemDoor(ModBlocks.REDWOOD_DOOR), "redwood_door");
-		FIR_DOOR = register(event, new ItemDoor(ModBlocks.FIR_DOOR), "fir_door");
-
-		LOG_TURNER = register(event, new ItemLogTurner(), "log_turner");
-
-		ModBlocks.REDWOOD_LEAVES.setSapling(REDWOOD_SAPLING);
-		ModBlocks.FIR_LEAVES.setSapling(FIR_SAPLING);
-
-		ModBlocks.REDWOOD_DOOR.setItem(REDWOOD_DOOR);
-		ModBlocks.FIR_DOOR.setItem(FIR_DOOR);
+		LOG_TURNER = Registry.register(Registry.ITEM, "redwoods:log_turner", new ItemLogTurner(new Item.Settings()));
 	}
 
+	// TODO
 	public static void registerOreDict() {
 		registerOre("logWood", REDWOOD_LOG, FIR_LOG, REDWOOD_LOG_QUARTER, FIR_LOG_QUARTER);
 		registerOre("treeSapling", REDWOOD_SAPLING, FIR_SAPLING);
@@ -98,36 +86,14 @@ public class ModItems {
 		registerOre("doorWood", REDWOOD_DOOR, FIR_DOOR);
 	}
 
-	private static Item register(RegistryEvent.Register<Item> event, Block block) {
-		ResourceLocation name = block.getRegistryName();
-
-		if(name == null) {
-			throw new NullPointerException();
-		}
-
-		Item item = new ItemBlock(block);
-		item.setRegistryName(name);
-		item.setUnlocalizedName(block.getUnlocalizedName());
-		item.setCreativeTab(Redwoods.TAB);
-
-		event.getRegistry().register(item);
-
-		return item;
-	}
-
-	private static Item register(RegistryEvent.Register<Item> event, Item item, String name) {
-		item.setRegistryName(new ResourceLocation(Redwoods.MODID, name));
-		item.setUnlocalizedName(Redwoods.MODID + "." + name);
-		item.setCreativeTab(Redwoods.TAB);
-
-		event.getRegistry().register(item);
-
-		return item;
+	private static Item register(String name, Block block) {
+		Item item = new BlockItem(block, new Item.Settings().itemGroup(Redwoods.ITEM_GROUP));
+		return Registry.register(Registry.ITEM, name, item);
 	}
 
 	private static void registerOre(String name, Item... items) {
 		for(Item item: items) {
-			OreDictionary.registerOre(name, item);
+			// TODO OreDictionary.registerOre(name, item);
 		}
 	}
 }

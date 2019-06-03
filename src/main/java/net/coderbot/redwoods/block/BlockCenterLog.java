@@ -1,27 +1,23 @@
 package net.coderbot.redwoods.block;
 
-import mcp.MethodsReturnNonnullByDefault;
-import net.minecraft.block.BlockLog;
-import net.minecraft.block.material.MapColor;
-import net.minecraft.block.state.BlockStateContainer;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.block.LogBlock;
+import net.minecraft.block.MaterialColor;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTool;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
+import net.minecraft.item.MiningToolItem;
+import net.minecraft.util.Hand;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-@MethodsReturnNonnullByDefault
-public class BlockCenterLog extends BlockLog {
+public class BlockCenterLog extends LogBlock {
 	private BlockQuarterLog quarter;
 
-	public BlockCenterLog() {
-		super();
+	public BlockCenterLog(Settings settings) {
+		super(MaterialColor.SPRUCE, settings);
 	}
 
 	public void setQuarter(BlockQuarterLog quarter) {
@@ -29,23 +25,25 @@ public class BlockCenterLog extends BlockLog {
 	}
 
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		ItemStack heldStack = playerIn.getHeldItem(hand);
+	@SuppressWarnings("deprecation") // wtf?
+	public boolean activate(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+		ItemStack heldStack = player.getEquippedStack(hand == Hand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
+
 		if(heldStack.isEmpty()) {
 			return false;
 		}
 
 		Item held = heldStack.getItem();
-		if(!(held instanceof ItemTool)) {
+		if(!(held instanceof MiningToolItem)) {
 			return false;
 		}
 
-		ItemTool tool = (ItemTool) held;
+		MiningToolItem tool = (MiningToolItem) held;
 
-		if(tool.getToolClasses(heldStack).contains("axe") && tool.getDestroySpeed(heldStack, state) > 1.0) {
-			worldIn.setBlockState(pos, this.removeBark(state, pos, facing, hitX, hitY, hitZ));
-
-			tool.onBlockDestroyed(heldStack, worldIn, state, pos, playerIn);
+		if(tool.isEffectiveOn(state) && tool.getBlockBreakingSpeed(heldStack, state) > 1.0) {
+			worldIn.setBlockState(pos, this.removeBark(state, pos, hit));
+			
+			heldStack.applyDamage(1, player, consumedPlayer -> consumedPlayer.sendToolBreakStatus(hand));
 
 			return true;
 		}
@@ -53,47 +51,13 @@ public class BlockCenterLog extends BlockLog {
 		return false;
 	}
 
-	public IBlockState removeBark(IBlockState existing, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		BlockQuarterLog.BarkSide side = BlockQuarterLog.BarkSide.fromHit(existing.getValue(LOG_AXIS), hitX, hitY, hitZ);
+	public BlockState removeBark(BlockState existing, BlockPos pos, BlockHitResult hit) {
+		// TODO: Implement removeBark, figure out hitX/hitY/hitZ
+		throw new UnsupportedOperationException("removeBark not implemented yet");
+		/*BlockQuarterLog.BarkSide side = BlockQuarterLog.BarkSide.fromHit(existing.get(AXIS), hitX, hitY, hitZ);
 
 		return quarter.getDefaultState()
-				.withProperty(BlockQuarterLog.BARK_SIDE, side)
-				.withProperty(LOG_AXIS, existing.getValue(LOG_AXIS));
-	}
-
-	@Override
-	public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-		return MapColor.OBSIDIAN;
-	}
-
-	@Override
-	public IBlockState getStateFromMeta(int meta) {
-		EnumAxis axis;
-
-		switch(meta >> 2) {
-			case 0:
-				axis = EnumAxis.X;
-				break;
-			case 1:
-				axis = EnumAxis.Y;
-				break;
-			case 2:
-				axis = EnumAxis.Z;
-				break;
-			default:
-				axis = EnumAxis.NONE;
-		}
-
-		return this.getDefaultState().withProperty(LOG_AXIS, axis);
-	}
-
-	@Override
-	public int getMetaFromState(IBlockState state) {
-		return state.getValue(LOG_AXIS).ordinal() << 2;
-	}
-
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, LOG_AXIS);
+				.with(BlockQuarterLog.BARK_SIDE, side)
+				.with(AXIS, existing.get(AXIS));*/
 	}
 }
