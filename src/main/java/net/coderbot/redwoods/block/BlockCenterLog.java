@@ -11,6 +11,7 @@ import net.minecraft.item.MiningToolItem;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class BlockCenterLog extends LogBlock {
@@ -40,7 +41,7 @@ public class BlockCenterLog extends LogBlock {
 
 		MiningToolItem tool = (MiningToolItem) held;
 
-		if(tool.isEffectiveOn(state) && tool.getBlockBreakingSpeed(heldStack, state) > 1.0) {
+		if(tool.isEffectiveOn(state) || tool.getBlockBreakingSpeed(heldStack, state) > 1.0) {
 			worldIn.setBlockState(pos, this.removeBark(state, pos, hit));
 			
 			heldStack.applyDamage(1, player, consumedPlayer -> consumedPlayer.sendToolBreakStatus(hand));
@@ -51,13 +52,17 @@ public class BlockCenterLog extends LogBlock {
 		return false;
 	}
 
-	public BlockState removeBark(BlockState existing, BlockPos pos, BlockHitResult hit) {
-		// TODO: Implement removeBark, figure out hitX/hitY/hitZ
-		throw new UnsupportedOperationException("removeBark not implemented yet");
-		/*BlockQuarterLog.BarkSide side = BlockQuarterLog.BarkSide.fromHit(existing.get(AXIS), hitX, hitY, hitZ);
+	public BlockState removeBark(BlockState existing, BlockPos blockPos, BlockHitResult hit) {
+		Vec3d pos = hit.getPos();
+
+		float hitX = (float)(pos.getX() - blockPos.getX());
+		float hitY = (float)(pos.getY() - blockPos.getY());
+		float hitZ = (float)(pos.getZ() - blockPos.getZ());
+
+		BlockQuarterLog.BarkSide side = BlockQuarterLog.BarkSide.fromHit(existing.get(AXIS), hitX, hitY, hitZ);
 
 		return quarter.getDefaultState()
 				.with(BlockQuarterLog.BARK_SIDE, side)
-				.with(AXIS, existing.get(AXIS));*/
+				.with(AXIS, existing.get(AXIS));
 	}
 }

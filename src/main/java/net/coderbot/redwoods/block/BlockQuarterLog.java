@@ -8,7 +8,9 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateFactory;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.StringIdentifiable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
 
 public class BlockQuarterLog extends LogBlock {
 	public static final EnumProperty<BarkSide> BARK_SIDE = EnumProperty.create("bark_side", BarkSide.class);
@@ -25,13 +27,16 @@ public class BlockQuarterLog extends LogBlock {
 	}
 
 	public BlockState getPlacementState(ItemPlacementContext context) {
-		// BarkSide side = BarkSide.fromHit(context.getPlayerFacing().getAxis());
+		Vec3d pos = context.getPos();
+		BlockPos blockPos = context.getBlockPos();
 
-		// TODO BarkSide side = BarkSide.fromHit(EnumAxis.fromFacingAxis(facing.getAxis()), hitX, hitY, hitZ);
+		float hitX = (float)(pos.getX() - blockPos.getX());
+		float hitY = (float)(pos.getY() - blockPos.getY());
+		float hitZ = (float)(pos.getZ() - blockPos.getZ());
 
-		// return super.getPlacementState(context).with(BARK_SIDE, side);
+		BarkSide side = BarkSide.fromHit(context.getFacing().getAxis(), hitX, hitY, hitZ);
 
-		throw new UnsupportedOperationException("TODO: getPlacementState");
+		return super.getPlacementState(context).with(BARK_SIDE, side);
 	}
 
 	public enum BarkSide implements StringIdentifiable {

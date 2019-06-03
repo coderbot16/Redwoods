@@ -117,20 +117,4 @@ public class ModBlocks {
 		FlammableBlockRegistry.getDefaultInstance().add(REDWOOD_FENCE_GATE, 5, 20);
 		FlammableBlockRegistry.getDefaultInstance().add(FIR_FENCE_GATE, 5, 20);
 	}
-
-	/*private static <T extends Block> T register(String name, T block) {
-		// TODO: Unlocalized name + Creative Tab
-	}*/
-
-	// TODO
-	/*@SubscribeEvent
-	@SideOnly(Side.CLIENT)
-	public static void registerModels(ModelRegistryEvent event) {
-		ModelLoader.setCustomStateMapper(REDWOOD_LEAVES, new StateMap.Builder().ignore(BlockConiferLeaves.CHECK_DECAY, BlockConiferLeaves.DECAYABLE).build());
-		ModelLoader.setCustomStateMapper(FIR_LEAVES, new StateMap.Builder().ignore(BlockConiferLeaves.CHECK_DECAY, BlockConiferLeaves.DECAYABLE).build());
-		ModelLoader.setCustomStateMapper(REDWOOD_SLAB, new StateMap.Builder().ignore(BlockConiferSlab.VARIANT).build());
-		ModelLoader.setCustomStateMapper(FIR_SLAB, new StateMap.Builder().ignore(BlockConiferSlab.VARIANT).build());
-		ModelLoader.setCustomStateMapper(REDWOOD_DOUBLE_SLAB, new StateMap.Builder().ignore(BlockConiferSlab.VARIANT).build());
-		ModelLoader.setCustomStateMapper(FIR_DOUBLE_SLAB, new StateMap.Builder().ignore(BlockConiferSlab.VARIANT).build());
-	}*/
 }
