@@ -56,6 +56,14 @@ public class ItemLogTurner extends Item {
 
 				return ActionResult.SUCCESS;
 			}
+		} else {
+			Direction.Axis newAxis = context.getFacing().getAxis();
+
+			if(currentAxis != newAxis) {
+				world.setBlockState(pos, state.with(PillarBlock.AXIS, newAxis));
+
+				return ActionResult.SUCCESS;
+			}
 		}
 
 		if(state.getBlock() instanceof BlockQuarterLog) {

@@ -70,7 +70,7 @@ public class ModItems {
 		REDWOOD_DOOR = Registry.register(Registry.ITEM, "redwoods:redwood_door", new TallBlockItem(ModBlocks.REDWOOD_DOOR, new Item.Settings().itemGroup(Redwoods.ITEM_GROUP)));
 		FIR_DOOR = Registry.register(Registry.ITEM, "redwoods:fir_door", new TallBlockItem(ModBlocks.FIR_DOOR, new Item.Settings().itemGroup(Redwoods.ITEM_GROUP)));
 
-		LOG_TURNER = Registry.register(Registry.ITEM, "redwoods:log_turner", new ItemLogTurner(new Item.Settings()));
+		LOG_TURNER = Registry.register(Registry.ITEM, "redwoods:log_turner", new ItemLogTurner(new Item.Settings().itemGroup(Redwoods.ITEM_GROUP)));
 	}
 
 	// TODO
