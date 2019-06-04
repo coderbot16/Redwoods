@@ -2,6 +2,7 @@ package net.coderbot.redwoods;
 
 import net.coderbot.redwoods.init.ModBlocks;
 import net.coderbot.redwoods.init.ModItems;
+import net.coderbot.redwoods.init.RedwoodsBiomes;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
@@ -17,11 +18,10 @@ public class Redwoods implements ModInitializer {
 
 		ModBlocks.registerBlocks();
 		ModItems.registerItems();
+		RedwoodsBiomes.registerBiomes();
 	}
 
-	// TODO: Creative Tab
-	// TODO: Smelting recipes (logs + quarter logs -> charcoal, 0.15F xp)
-
-	// TODO: Bark and stripped logs
+	// TODO: Bark ("Wood") and stripped logs/bark
 	// TODO: Boats
+	// TODO: Loot Tables
 }
