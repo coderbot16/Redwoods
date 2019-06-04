@@ -1,6 +1,5 @@
 package net.coderbot.redwoods.block;
 
-import net.coderbot.redwoods.RedwoodsConfig;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.*;
@@ -47,7 +46,7 @@ public class ConiferLeavesBlock extends Block {
 	}
 
 	public int getLightSubtracted(BlockState state, BlockView view, BlockPos pos) {
-		return RedwoodsConfig.leavesDiffuseSkylight ? 1 : 0;
+		return 0;
 	}
 
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, IWorld world, BlockPos pos, BlockPos neighborPos) {
@@ -111,7 +110,8 @@ public class ConiferLeavesBlock extends Block {
 	@Override
 	@SuppressWarnings("deprecation")
 	public boolean isSideInvisible(BlockState state, BlockState neighborState, Direction offset) {
-		return RedwoodsConfig.useOptiLeaves && neighborState.getBlock() instanceof ConiferLeavesBlock;
+		// OptiLeaves optimization: Cull faces with leaf block neighbors to reduce geometry in redwood forests
+		return neighborState.getBlock() instanceof ConiferLeavesBlock;
 	}
 
 	@Override

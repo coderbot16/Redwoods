@@ -30,5 +30,13 @@
   "block.redwoods.redwood_door": "Redwood Door",
   "block.redwoods.fir_door": "Fir Door",
 
-  "item.redwoods.log_turner": "Log Turner"
+  "item.redwoods.log_turner": "Log Turner",
+  "item.redwoods.log_turner.tooltip.line0": "Use on a log to instantly set", 
+  "item.redwoods.log_turner.tooltip.line1": "its axis to the side you clicked",
+  "item.redwoods.log_turner.tooltip.line2": "When used on a quarter log, it",
+  "item.redwoods.log_turner.tooltip.line3": "will try to set the axis, and if",
+  "item.redwoods.log_turner.tooltip.line4": "it already matches, it will then",
+  "item.redwoods.log_turner.tooltip.line5": "rotate the bark side clockwise",
+  "item.redwoods.log_turner.tooltip.line6": "When used while sneaking, it will",
+  "item.redwoods.log_turner.tooltip.line7": "cycle the axis and bark side"
 }

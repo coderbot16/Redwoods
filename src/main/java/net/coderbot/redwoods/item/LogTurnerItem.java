@@ -3,6 +3,7 @@ package net.coderbot.redwoods.item;
 import net.coderbot.redwoods.block.QuarterLogBlock;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.ChatFormat;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PillarBlock;
 import net.minecraft.client.item.TooltipContext;
@@ -10,7 +11,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -93,12 +96,11 @@ public class LogTurnerItem extends Item {
 	}
 
 	@Environment(EnvType.CLIENT)
-	public void buildTooltip(ItemStack stack, /*TODO: @Nullable*/ World world, List<Component> tooltip, TooltipContext context) {
+	public void buildTooltip(ItemStack stack, World world, List<Component> tooltip, TooltipContext context) {
 		super.buildTooltip(stack, world, tooltip, context);
 
-		// TODO: Use TranslatableComponent
-		tooltip.add(new TextComponent("Use on a log to instantly set its axis to the side you clicked"));
-		tooltip.add(new TextComponent("When used on a quarter log, it will try to set the axis, and if it already matches, it will then rotate the bark side clockwise"));
-		tooltip.add(new TextComponent("When used while sneaking, it will simply cycle the axis and bark side"));
+		for(int i = 0; i < 8; i++) {
+			tooltip.add(new TranslatableComponent("item.redwoods.log_turner.tooltip.line" + i).setStyle(new Style().setColor(ChatFormat.GRAY)));
+		}
 	}
 }
