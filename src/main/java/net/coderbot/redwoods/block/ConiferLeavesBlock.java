@@ -34,7 +34,6 @@ public class ConiferLeavesBlock extends Block {
 
 	public void onRandomTick(BlockState state, World world, BlockPos pos, Random random) {
 		if (!state.get(PERSISTENT) && state.get(DISTANCE) == MAX_DISTANCE) {
-			System.out.println("DECAY @ "+pos);
 			dropStacks(state, world, pos);
 			world.clearBlockState(pos, false);
 		}

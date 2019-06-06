@@ -22,6 +22,5 @@ public class Redwoods implements ModInitializer {
 	}
 
 	// TODO: Bark ("Wood") and stripped logs/bark
-	// TODO: Boats
-	// TODO: Loot Tables
+	// TODO: Boats (not really possible without a custom entity or mixin, probably)
 }
