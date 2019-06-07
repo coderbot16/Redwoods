@@ -21,6 +21,16 @@ public class MixinSetBaseBiomesLayer {
 	@Mutable
 	private static int[] SNOWY_BIOMES;
 
+	@Shadow
+	@Final
+	@Mutable
+	private static int[] DRY_BIOMES;
+
+	@Shadow
+	@Final
+	@Mutable
+	private static int[] COOL_BIOMES;
+
 	static {
 		int REDWOOD_FOREST_ID = Registry.BIOME.getRawId(RedwoodsBiomes.REDWOOD_FOREST);
 		int LUSH_REDWOOD_FOREST_ID = Registry.BIOME.getRawId(RedwoodsBiomes.LUSH_REDWOOD_FOREST);
@@ -28,9 +38,10 @@ public class MixinSetBaseBiomesLayer {
 		int SNOWY_RAINFOREST_ID = Registry.BIOME.getRawId(RedwoodsBiomes.SNOWY_RAINFOREST);
 		int ALPINE_BIOME_ID = Registry.BIOME.getRawId(RedwoodsBiomes.ALPINE);
 
-		// TODO: rip every other temperate biome in the game
-		// TEMPERATE_BIOMES = new int[] { REDWOOD_FOREST_ID, LUSH_REDWOOD_FOREST_ID };
-		TEMPERATE_BIOMES = new int[] { ALPINE_BIOME_ID };
-		SNOWY_BIOMES = new int[] { SNOWY_RAINFOREST_ID };
+		// TODO: rip every other biome
+		TEMPERATE_BIOMES = new int[] { REDWOOD_FOREST_ID, LUSH_REDWOOD_FOREST_ID, TEMPERATE_RAINFOREST_ID, SNOWY_RAINFOREST_ID, ALPINE_BIOME_ID };
+		SNOWY_BIOMES = new int[] { REDWOOD_FOREST_ID, LUSH_REDWOOD_FOREST_ID, TEMPERATE_RAINFOREST_ID, SNOWY_RAINFOREST_ID, ALPINE_BIOME_ID };
+		DRY_BIOMES = new int[] { REDWOOD_FOREST_ID, LUSH_REDWOOD_FOREST_ID, TEMPERATE_RAINFOREST_ID, SNOWY_RAINFOREST_ID, ALPINE_BIOME_ID };
+		COOL_BIOMES = new int[] { REDWOOD_FOREST_ID, LUSH_REDWOOD_FOREST_ID, TEMPERATE_RAINFOREST_ID, SNOWY_RAINFOREST_ID, ALPINE_BIOME_ID };
 	}
 }
