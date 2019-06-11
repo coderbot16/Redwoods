@@ -45,9 +45,7 @@ public class RedwoodsBiomes {
 				new MegaConiferTreeFeature(DefaultFeatureConfig::deserialize, false, ModBlocks.FIR.woodSW, ModBlocks.FIR.woodNW, ModBlocks.FIR.woodNE, ModBlocks.FIR.woodSE, ModBlocks.FIR.leaves)
 		);
 
-		// TODO: Biome IDs
-
-		REDWOOD_FOREST = Registry.register(Registry.BIOME, 51, "redwoods:redwood_forest", new ConiferousBiome(
+		REDWOOD_FOREST = Registry.register(Registry.BIOME,"redwoods:redwood_forest", new ConiferousBiome(
 				new Biome.Settings()
 						.configureSurfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRASS_CONFIG)
 						.precipitation(Biome.Precipitation.RAIN).category(Biome.Category.TAIGA)
@@ -63,7 +61,7 @@ public class RedwoodsBiomes {
 				MEGA_REDWOOD_TREE
 		));
 
-		LUSH_REDWOOD_FOREST = Registry.register(Registry.BIOME, 52, "redwoods:lush_redwood_forest", new ConiferousBiome(
+		LUSH_REDWOOD_FOREST = Registry.register(Registry.BIOME, "redwoods:lush_redwood_forest", new ConiferousBiome(
 				new Biome.Settings()
 						.configureSurfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRASS_CONFIG)
 						.precipitation(Biome.Precipitation.RAIN).category(Biome.Category.TAIGA)
@@ -81,7 +79,7 @@ public class RedwoodsBiomes {
 
 		DefaultBiomeFeatures.addDefaultFlowers(LUSH_REDWOOD_FOREST);
 
-		TEMPERATE_RAINFOREST = Registry.register(Registry.BIOME, 53, "redwoods:temperate_rainforest", new ConiferousBiome(
+		TEMPERATE_RAINFOREST = Registry.register(Registry.BIOME, "redwoods:temperate_rainforest", new ConiferousBiome(
 				new Biome.Settings()
 						.configureSurfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRASS_CONFIG)
 						.precipitation(Biome.Precipitation.RAIN).category(Biome.Category.TAIGA)
@@ -115,7 +113,7 @@ public class RedwoodsBiomes {
 				)
 		);
 
-		SNOWY_RAINFOREST = Registry.register(Registry.BIOME, 54, "redwoods:snowy_rainforest", new ConiferousBiome(
+		SNOWY_RAINFOREST = Registry.register(Registry.BIOME, "redwoods:snowy_rainforest", new ConiferousBiome(
 				new Biome.Settings()
 						.configureSurfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRASS_CONFIG)
 						.precipitation(Biome.Precipitation.SNOW).category(Biome.Category.TAIGA)
@@ -140,7 +138,7 @@ public class RedwoodsBiomes {
 				)
 		);
 
-		ALPINE = Registry.register(Registry.BIOME, 55, "redwoods:alpine", new AlpineBiome(
+		ALPINE = Registry.register(Registry.BIOME, "redwoods:alpine", new AlpineBiome(
 				new Biome.Settings()
 						.configureSurfaceBuilder(SurfaceBuilder.MOUNTAIN, SurfaceBuilder.GRASS_CONFIG)
 						.precipitation(Biome.Precipitation.SNOW).category(Biome.Category.EXTREME_HILLS)
