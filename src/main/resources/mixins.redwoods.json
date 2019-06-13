@@ -1,9 +1,0 @@
-{
-  "required": true,
-  "package": "net.coderbot.redwoods.mixin",
-  "compatibilityLevel": "JAVA_8",
-  "mixins": [ "MixinSetBaseBiomesLayer" ],
-  "injectors": {
-	"defaultRequire": 1
-  }
-}

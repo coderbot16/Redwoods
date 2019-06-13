@@ -4,6 +4,9 @@ import net.coderbot.redwoods.biomes.AlpineBiome;
 import net.coderbot.redwoods.biomes.ConiferousBiome;
 import net.coderbot.redwoods.world.ConiferTreeFeature;
 import net.coderbot.redwoods.world.MegaConiferTreeFeature;
+import net.fabricmc.fabric.api.biomes.v1.FabricBiomes;
+import net.fabricmc.fabric.api.biomes.v1.OverworldBiomes;
+import net.fabricmc.fabric.api.biomes.v1.OverworldClimate;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
@@ -153,5 +156,15 @@ public class RedwoodsBiomes {
 				REDWOOD_TREE,
 				FIR_TREE
 		));
+
+		OverworldBiomes.addBaseBiome(REDWOOD_FOREST, OverworldClimate.TEMPERATE, 8.0);
+		OverworldBiomes.addBaseBiome(LUSH_REDWOOD_FOREST, OverworldClimate.TEMPERATE, 8.0);
+		OverworldBiomes.addBaseBiome(TEMPERATE_RAINFOREST, OverworldClimate.COOL, 8.0);
+		OverworldBiomes.addBaseBiome(SNOWY_RAINFOREST, OverworldClimate.SNOWY, 8.0);
+		OverworldBiomes.addBaseBiome(ALPINE, OverworldClimate.SNOWY, 8.0);
+
+		FabricBiomes.addSpawnBiome(REDWOOD_FOREST);
+		FabricBiomes.addSpawnBiome(LUSH_REDWOOD_FOREST);
+		FabricBiomes.addSpawnBiome(TEMPERATE_RAINFOREST);
 	}
 }
