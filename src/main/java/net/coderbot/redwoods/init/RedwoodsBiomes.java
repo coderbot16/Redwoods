@@ -157,11 +157,11 @@ public class RedwoodsBiomes {
 				FIR_TREE
 		));
 
-		OverworldBiomes.addBaseBiome(REDWOOD_FOREST, OverworldClimate.TEMPERATE, 8.0);
-		OverworldBiomes.addBaseBiome(LUSH_REDWOOD_FOREST, OverworldClimate.TEMPERATE, 8.0);
-		OverworldBiomes.addBaseBiome(TEMPERATE_RAINFOREST, OverworldClimate.COOL, 8.0);
-		OverworldBiomes.addBaseBiome(SNOWY_RAINFOREST, OverworldClimate.SNOWY, 8.0);
-		OverworldBiomes.addBaseBiome(ALPINE, OverworldClimate.SNOWY, 8.0);
+		OverworldBiomes.addBaseBiome(REDWOOD_FOREST, OverworldClimate.TEMPERATE, 1.0);
+		OverworldBiomes.addBaseBiome(LUSH_REDWOOD_FOREST, OverworldClimate.TEMPERATE, 1.0);
+		OverworldBiomes.addBaseBiome(TEMPERATE_RAINFOREST, OverworldClimate.COOL, 1.0);
+		OverworldBiomes.addBaseBiome(SNOWY_RAINFOREST, OverworldClimate.SNOWY, 2.0);
+		OverworldBiomes.addBaseBiome(ALPINE, OverworldClimate.SNOWY, 1.0);
 
 		FabricBiomes.addSpawnBiome(REDWOOD_FOREST);
 		FabricBiomes.addSpawnBiome(LUSH_REDWOOD_FOREST);
