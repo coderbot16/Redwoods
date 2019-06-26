@@ -1,7 +1,7 @@
 package net.coderbot.redwoods;
 
-import net.coderbot.redwoods.init.ModBlocks;
-import net.coderbot.redwoods.init.ModItems;
+import net.coderbot.redwoods.init.RedwoodsBlocks;
+import net.coderbot.redwoods.init.RedwoodsItems;
 import net.coderbot.redwoods.init.RedwoodsBiomes;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
@@ -14,10 +14,10 @@ public class Redwoods implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		ITEM_GROUP = FabricItemGroupBuilder.build(new Identifier("redwoods", "items"), () -> new ItemStack(ModItems.REDWOOD_SAPLING));
+		ITEM_GROUP = FabricItemGroupBuilder.build(new Identifier("redwoods", "items"), () -> new ItemStack(RedwoodsItems.REDWOOD_SAPLING));
 
-		ModBlocks.registerBlocks();
-		ModItems.registerItems();
+		RedwoodsBlocks.registerBlocks();
+		RedwoodsItems.registerItems();
 		RedwoodsBiomes.registerBiomes();
 	}
 

@@ -1,7 +1,8 @@
 package net.coderbot.redwoods.world;
 
 import com.mojang.datafixers.Dynamic;
-import net.coderbot.redwoods.block.ConiferLeavesBlock;
+import io.github.terraformersmc.terraform.block.ExtendedLeavesBlock;
+import io.github.terraformersmc.terraform.block.QuarterLogBlock;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
@@ -16,24 +17,21 @@ import java.util.Set;
 import java.util.function.Function;
 
 public class MegaConiferTreeFeature extends AbstractTreeFeature<DefaultFeatureConfig> {
-	private BlockState woodSW;
-	private BlockState woodNW;
-	private BlockState woodNE;
-	private BlockState woodSE;
+	private BlockState logSW;
+	private BlockState logNW;
+	private BlockState logNE;
+	private BlockState logSE;
 	private BlockState leaves;
-
-	private boolean doBlockNotify;
 
 	private static final int EXTRA_LEAVES_HEIGHT = 2;
 
-	public MegaConiferTreeFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> function, boolean notify, BlockState woodSW, BlockState woodNW, BlockState woodNE, BlockState woodSE, BlockState leaves) {
+	public MegaConiferTreeFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> function, boolean notify, Function<QuarterLogBlock.BarkSide, BlockState> log, BlockState leaves) {
 		super(function, notify);
-		this.doBlockNotify = notify;
 
-		this.woodSW = woodSW;
-		this.woodNW = woodNW;
-		this.woodNE = woodNE;
-		this.woodSE = woodSE;
+		this.logSW = log.apply(QuarterLogBlock.BarkSide.SOUTHWEST);
+		this.logNW = log.apply(QuarterLogBlock.BarkSide.NORTHWEST);
+		this.logNE = log.apply(QuarterLogBlock.BarkSide.NORTHEAST);
+		this.logSE = log.apply(QuarterLogBlock.BarkSide.SOUTHEAST);
 		this.leaves = leaves;
 	}
 
@@ -133,7 +131,7 @@ public class MegaConiferTreeFeature extends AbstractTreeFeature<DefaultFeatureCo
 					pos.set(origin.getX() + dX, origin.getY() + dY, origin.getZ() + dZ);
 
 					if(AbstractTreeFeature.isAirOrLeaves(world, pos)) {
-						setBlockState(blocks, world, pos, leaves.with(ConiferLeavesBlock.DISTANCE, Math.max(aZ + aX, 1)), boundingBox);
+						setBlockState(blocks, world, pos, leaves.with(ExtendedLeavesBlock.DISTANCE, Math.max(aZ + aX, 1)), boundingBox);
 					}
 				}
 			}
@@ -157,10 +155,10 @@ public class MegaConiferTreeFeature extends AbstractTreeFeature<DefaultFeatureCo
 		BlockPos.Mutable pos = new BlockPos.Mutable(origin);
 
 		for(int i = 0; i < height; i++) {
-			this.setBlockState(blocks, world, pos.set(origin.getX(), origin.getY() + i, origin.getZ()), woodNW, boundingBox);
-			this.setBlockState(blocks, world, pos.set(origin.getX() + 1, origin.getY() + i, origin.getZ()), woodNE, boundingBox);
-			this.setBlockState(blocks, world, pos.set(origin.getX(), origin.getY() + i, origin.getZ() + 1), woodSW, boundingBox);
-			this.setBlockState(blocks, world, pos.set(origin.getX() + 1, origin.getY() + i, origin.getZ() + 1), woodSE, boundingBox);
+			this.setBlockState(blocks, world, pos.set(origin.getX(), origin.getY() + i, origin.getZ()), logNW, boundingBox);
+			this.setBlockState(blocks, world, pos.set(origin.getX() + 1, origin.getY() + i, origin.getZ()), logNE, boundingBox);
+			this.setBlockState(blocks, world, pos.set(origin.getX(), origin.getY() + i, origin.getZ() + 1), logSW, boundingBox);
+			this.setBlockState(blocks, world, pos.set(origin.getX() + 1, origin.getY() + i, origin.getZ() + 1), logSE, boundingBox);
 		}
 	}
 }

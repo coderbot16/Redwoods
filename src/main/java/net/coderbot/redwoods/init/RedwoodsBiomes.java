@@ -1,5 +1,6 @@
 package net.coderbot.redwoods.init;
 
+import io.github.terraformersmc.terraform.block.QuarterLogBlock;
 import net.coderbot.redwoods.biomes.AlpineBiome;
 import net.coderbot.redwoods.biomes.ConiferousBiome;
 import net.coderbot.redwoods.world.ConiferTreeFeature;
@@ -33,19 +34,29 @@ public class RedwoodsBiomes {
 
 	public static void registerBiomes() {
 		REDWOOD_TREE = Registry.register(Registry.FEATURE, "redwoods:redwood_tree",
-				new ConiferTreeFeature(DefaultFeatureConfig::deserialize, false, ModBlocks.REDWOOD.wood, ModBlocks.REDWOOD.leaves)
+				new ConiferTreeFeature(DefaultFeatureConfig::deserialize, false, RedwoodsBlocks.REDWOOD_LOG.getDefaultState(), RedwoodsBlocks.REDWOOD_LEAVES.getDefaultState())
 		);
 
 		FIR_TREE = Registry.register(Registry.FEATURE, "redwoods:fir_tree",
-				new ConiferTreeFeature(DefaultFeatureConfig::deserialize, false, ModBlocks.FIR.wood, ModBlocks.FIR.leaves)
+				new ConiferTreeFeature(DefaultFeatureConfig::deserialize, false, RedwoodsBlocks.FIR_LOG.getDefaultState(), RedwoodsBlocks.FIR_LEAVES.getDefaultState())
 		);
 
 		MEGA_REDWOOD_TREE = Registry.register(Registry.FEATURE, "redwoods:mega_redwood_tree",
-				new MegaConiferTreeFeature(DefaultFeatureConfig::deserialize, false, ModBlocks.REDWOOD.woodSW, ModBlocks.REDWOOD.woodNW, ModBlocks.REDWOOD.woodNE, ModBlocks.REDWOOD.woodSE, ModBlocks.REDWOOD.leaves)
+				new MegaConiferTreeFeature(
+						DefaultFeatureConfig::deserialize,
+						false,
+						side -> RedwoodsBlocks.REDWOOD_LOG_QUARTER.getDefaultState().with(QuarterLogBlock.BARK_SIDE, side),
+						RedwoodsBlocks.REDWOOD_LEAVES.getDefaultState()
+				)
 		);
 
 		MEGA_FIR_TREE = Registry.register(Registry.FEATURE, "redwoods:mega_fir_tree",
-				new MegaConiferTreeFeature(DefaultFeatureConfig::deserialize, false, ModBlocks.FIR.woodSW, ModBlocks.FIR.woodNW, ModBlocks.FIR.woodNE, ModBlocks.FIR.woodSE, ModBlocks.FIR.leaves)
+				new MegaConiferTreeFeature(
+						DefaultFeatureConfig::deserialize,
+						false,
+						side -> RedwoodsBlocks.FIR_LOG_QUARTER.getDefaultState().with(QuarterLogBlock.BARK_SIDE, side),
+						RedwoodsBlocks.FIR_LEAVES.getDefaultState()
+				)
 		);
 
 		REDWOOD_FOREST = Registry.register(Registry.BIOME,"redwoods:redwood_forest", new ConiferousBiome(

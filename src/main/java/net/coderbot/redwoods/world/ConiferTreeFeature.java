@@ -1,7 +1,7 @@
 package net.coderbot.redwoods.world;
 
 import com.mojang.datafixers.Dynamic;
-import net.coderbot.redwoods.block.ConiferLeavesBlock;
+import io.github.terraformersmc.terraform.block.ExtendedLeavesBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.Direction;
@@ -17,16 +17,13 @@ import java.util.Set;
 import java.util.function.Function;
 
 public class ConiferTreeFeature extends AbstractTreeFeature<DefaultFeatureConfig> {
-	private BlockState wood;
+	private BlockState log;
 	private BlockState leaves;
 
-	private boolean doBlockNotify;
-
-	public ConiferTreeFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> function, boolean notify, BlockState wood, BlockState leaves) {
+	public ConiferTreeFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> function, boolean notify, BlockState log, BlockState leaves) {
 		super(function, notify);
-		this.doBlockNotify = notify;
 
-		this.wood = wood;
+		this.log = log;
 		this.leaves = leaves;
 	}
 
@@ -107,7 +104,7 @@ public class ConiferTreeFeature extends AbstractTreeFeature<DefaultFeatureConfig
 					pos.set(origin.getX() + dX, origin.getY() + dY, origin.getZ() + dZ);
 
 					if(AbstractTreeFeature.isAirOrLeaves(world, pos)) {
-						setBlockState(blocks, world, pos, leaves.with(ConiferLeavesBlock.DISTANCE, Math.max(aZ + aX, 1)), boundingBox);
+						setBlockState(blocks, world, pos, leaves.with(ExtendedLeavesBlock.DISTANCE, Math.max(aZ + aX, 1)), boundingBox);
 					}
 				}
 			}
@@ -129,7 +126,7 @@ public class ConiferTreeFeature extends AbstractTreeFeature<DefaultFeatureConfig
 
 	private void growTrunk(Set<BlockPos> blocks, ModifiableTestableWorld world, BlockPos.Mutable pos, int height, MutableIntBoundingBox boundingBox) {
 		for(int i = 0; i < height; i++) {
-			setBlockState(blocks, world, pos, wood, boundingBox);
+			setBlockState(blocks, world, pos, log, boundingBox);
 
 			pos.setOffset(Direction.UP);
 		}

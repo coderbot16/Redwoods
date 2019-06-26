@@ -1,6 +1,6 @@
 package net.coderbot.redwoods.item;
 
-import net.coderbot.redwoods.block.QuarterLogBlock;
+import io.github.terraformersmc.terraform.block.QuarterLogBlock;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.ChatFormat;
@@ -12,7 +12,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
