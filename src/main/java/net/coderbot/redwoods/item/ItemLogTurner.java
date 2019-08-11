@@ -1,8 +1,10 @@
 package net.coderbot.redwoods.item;
 
+import net.coderbot.redwoods.Redwoods;
 import net.coderbot.redwoods.block.BlockQuarterLog;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -11,6 +13,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -93,8 +96,12 @@ public class ItemLogTurner extends Item {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
 		super.addInformation(stack, world, tooltip, flag);
-		tooltip.add("Use on a log to instantly set its axis to the side you clicked");
-		tooltip.add("When used on a quarter log, it will try to set the axis, and if it already matches, it will then rotate the bark side clockwise");
-		tooltip.add("When used while sneaking, it will simply cycle the axis and bark side");
+
+		String translation = I18n.format("item." + Redwoods.MODID + ".log_turner.tooltip");
+
+		// Need quadruple backslashes here so the regex doesn't eat the characters
+		for(String line: translation.split("\\\\n")) {
+			tooltip.add(TextFormatting.GRAY.toString() + line.trim());
+		}
 	}
 }
