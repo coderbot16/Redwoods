@@ -1,0 +1,34 @@
+redwoods.config.title=Configuration de Redwoods
+itemGroup.redwoods=Redwoods
+
+tile.redwoods.redwood_log.name=Bûche de séquoia
+tile.redwoods.fir_log.name=Bûche d'épicéa
+tile.redwoods.redwood_log_quarter.name=Bûche de séquoia
+tile.redwoods.fir_log_quarter.name=Bûche d'épicéa
+
+tile.redwoods.redwood_sapling.name=Pousse de séquoia
+tile.redwoods.fir_sapling.name=Pousse d'épicéa
+
+tile.redwoods.redwood_leaves.name=Feuilles de séquoia
+tile.redwoods.fir_leaves.name=Feuilles d'épicéa
+
+tile.redwoods.redwood_planks.name=Planches de séquoia
+tile.redwoods.fir_planks.name=Planches d'épicéa
+
+tile.redwoods.redwood_slab.name=Dalle en bois de séquoia
+tile.redwoods.fir_slab.name=Dalle en bois d'épicéa
+
+tile.redwoods.redwood_stairs.name=Escalier en bois de séquoia
+tile.redwoods.fir_stairs.name=Escalier en bois d'épicéa
+
+tile.redwoods.redwood_fence.name=Barrière en bois de séquoia
+tile.redwoods.fir_fence.name=Barrière en bois d'épicéa
+
+tile.redwoods.redwood_fence_gate.name=Portillon en séquoia
+tile.redwoods.fir_fence_gate.name=Portillon en épicéa
+
+item.redwoods.redwood_door.name=Porte en séquoia
+item.redwoods.fir_door.name=Porte en épicéa
+
+item.redwoods.log_turner.name=Tourneur de bûche
+item.redwoods.log_turner.tooltip=Utiliser sur une bûche pour la faire\n pivoter sur l'axe que vous avez cliqué\n Quand utilisé une une grosse bûche,\n essaie de changer son axe, et\n si il corresponds déjà, fait \n tourner l'écorce dans le sens horaire\n Utiliser en s'accroupissant pour\n changer l'axe et le côté de l'écorce
