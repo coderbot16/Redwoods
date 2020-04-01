@@ -28,11 +28,6 @@ public class BlockConiferSlab extends BlockSlab {
 	}
 
 	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		return Item.getItemFromBlock(Blocks.WOODEN_SLAB);
-	}
-
-	@Override
 	public String getUnlocalizedName(int meta) {
 		return getUnlocalizedName();
 	}
