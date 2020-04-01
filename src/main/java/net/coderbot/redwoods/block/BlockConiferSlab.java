@@ -1,5 +1,6 @@
 package net.coderbot.redwoods.block;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -17,6 +18,8 @@ import java.util.Random;
 public class BlockConiferSlab extends BlockSlab {
 	public static PropertyEnum<EnumSingleVariant> VARIANT = PropertyEnum.create("variant", EnumSingleVariant.class);
 
+	private Block blockDropped;
+
 	public BlockConiferSlab() {
 		super(Material.WOOD);
 
@@ -24,7 +27,19 @@ public class BlockConiferSlab extends BlockSlab {
 		setHardness(2.0F);
 		setResistance(5.0F);
 
+		setBlockDropped(this);
+
 		useNeighborBrightness = true;
+	}
+
+	public void setBlockDropped(Block newBlockDropped)
+	{
+		this.blockDropped = newBlockDropped;
+	}
+
+	@Override
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+		return Item.getItemFromBlock(blockDropped);
 	}
 
 	@Override
