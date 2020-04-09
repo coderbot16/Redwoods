@@ -20,8 +20,7 @@ public class BlockConiferSlab extends BlockSlab {
 
 	private Block blockDropped = this;
 
-	public BlockConiferSlab()
-	{
+	public BlockConiferSlab() {
 		super(Material.WOOD);
 
 		setSoundType(SoundType.WOOD);
@@ -36,8 +35,7 @@ public class BlockConiferSlab extends BlockSlab {
 		setBlockDropped(blockDropped);
 	}
 
-	public void setBlockDropped(Block newBlockDropped)
-	{
+	public void setBlockDropped(Block newBlockDropped) {
 		this.blockDropped = newBlockDropped;
 	}
 

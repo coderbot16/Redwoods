@@ -7,8 +7,7 @@ public class BlockConiferDoubleSlab extends BlockConiferSlab {
 		super();
 	}
 
-	public BlockConiferDoubleSlab(Block blockDropped)
-	{
+	public BlockConiferDoubleSlab(Block blockDropped) {
 		super(blockDropped);
 	}
 
