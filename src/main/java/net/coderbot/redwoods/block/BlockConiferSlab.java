@@ -18,18 +18,22 @@ import java.util.Random;
 public class BlockConiferSlab extends BlockSlab {
 	public static PropertyEnum<EnumSingleVariant> VARIANT = PropertyEnum.create("variant", EnumSingleVariant.class);
 
-	private Block blockDropped;
+	private Block blockDropped = this;
 
-	public BlockConiferSlab() {
+	public BlockConiferSlab()
+	{
 		super(Material.WOOD);
 
 		setSoundType(SoundType.WOOD);
 		setHardness(2.0F);
 		setResistance(5.0F);
 
-		setBlockDropped(this);
-
 		useNeighborBrightness = true;
+	}
+
+	public BlockConiferSlab(Block blockDropped) {
+		this();
+		setBlockDropped(blockDropped);
 	}
 
 	public void setBlockDropped(Block newBlockDropped)

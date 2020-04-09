@@ -92,10 +92,8 @@ public class ModBlocks {
 		REDWOOD_SLAB = register(event, new BlockConiferSlab(), "redwood_slab");
 		FIR_SLAB = register(event, new BlockConiferSlab(), "fir_slab");
 
-		REDWOOD_DOUBLE_SLAB = register(event, new BlockConiferDoubleSlab(), "redwood_double_slab");
-		REDWOOD_DOUBLE_SLAB.setBlockDropped(REDWOOD_SLAB);
-		FIR_DOUBLE_SLAB = register(event, new BlockConiferDoubleSlab(), "fir_double_slab");
-		FIR_DOUBLE_SLAB.setBlockDropped(FIR_SLAB);
+		REDWOOD_DOUBLE_SLAB = register(event, new BlockConiferDoubleSlab(REDWOOD_SLAB), "redwood_double_slab");
+		FIR_DOUBLE_SLAB = register(event, new BlockConiferDoubleSlab(FIR_SLAB), "fir_double_slab");
 
 		REDWOOD_STAIRS = register(event, new BlockConiferStairs(REDWOOD_PLANKS), "redwood_stairs");
 		FIR_STAIRS = register(event, new BlockConiferStairs(FIR_PLANKS), "fir_stairs");
